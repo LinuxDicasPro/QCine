@@ -672,3 +672,10 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+This project is licensed under the GNU General Public License, Version 3 (GPLv3).
+
+This project also includes components licensed under the Apache License, Version 2.0:
+- Material Icons (icons)
+
+For the full text of the Apache License, Version 2.0, see `icons/LICENSE-APACHE-2.0'.
