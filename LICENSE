@@ -679,3 +679,8 @@ This project also includes components licensed under the Apache License, Version
 - Material Icons (icons)
 
 For the full text of the Apache License, Version 2.0, see `icons/LICENSE-APACHE-2.0'.
+
+This project also includes components licensed under the MIT License:
+- SingleApplication (utils)
+
+For the full text of the MIT License, see `utils/SingleApplication/LICENSE_MIT`.
