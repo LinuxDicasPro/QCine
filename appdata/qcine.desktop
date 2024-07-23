@@ -1,0 +1,10 @@
+[Desktop Entry]
+
+Type=Application
+Version=1.0
+Name=QCine Multimedia Player
+Comment=Modern multimedia player.
+Exec=qcine
+Icon=qcine
+Terminal=false
+Categories=Audio;Video;AudioVideo;
