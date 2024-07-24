@@ -1,0 +1,7 @@
+#ifndef QCINE_VERSION_HPP
+#define QCINE_VERSION_HPP
+
+#define DEBUG @DEBUG@
+#define VERSION "@VERSION@"
+
+#endif //QCINE_VERSION_HPP
