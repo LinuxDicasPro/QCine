@@ -92,6 +92,13 @@ namespace QCineSettings {
         void changeEffectTime(int i);
 
     private:
+        QGridLayout *controlsEngine{}, *controlsTheme{}, *bgTheme{};
+        QGroupBox *enginebox{}, *themebox{}, *bgbox{}, *effcontrol{}, *effectgroup{}, *effectbg{};
+        QVBoxLayout *layout{}, *performanceBox{}, *effectBox{}, *customBox{};
+        QVBoxLayout *pllayout{}, *bglayout{}, *controllayout{};
+        QWidget *performance{}, *effect{}, *custom{};
+        QTabWidget *tabWidget{};
+
         QCheckBox *gradck{}, *effectDisable{}, *effectDisableBG{}, *includedef{};
         QCineDebug::Debug *debug{};
         QCineSettingsManager::SettingsManager *settingsManager{};

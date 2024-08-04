@@ -40,14 +40,14 @@ namespace QCinePlaylist {
         connect(add, &QCineButtons::Buttons::clicked, this, &Playlist::addFiles);
 
         /** Layout para as playlists salvas */
-        auto changePlaylist = new QHBoxLayout();
+        changePlaylist = new QHBoxLayout();
         changePlaylist->setContentsMargins(2, 2 ,2 ,0);
         changePlaylist->addWidget(previousPlaylist);
         changePlaylist->addWidget(playlistName);
         changePlaylist->addWidget(nextPlaylist);
 
         /** Layout para os botões */
-        auto buttons = new QHBoxLayout();
+        buttons = new QHBoxLayout();
         buttons->setContentsMargins(7, 0 ,7 ,0);
         buttons->setSpacing(2);
         buttons->addWidget(add);
@@ -56,7 +56,7 @@ namespace QCinePlaylist {
         buttons->addWidget(clear);
 
         /** Layout principal */
-        auto mainlayout = new QVBoxLayout(this);
+        mainlayout = new QVBoxLayout(this);
         mainlayout->setContentsMargins(0, 5 ,0 ,5);
         mainlayout->addLayout(changePlaylist);
         mainlayout->addLayout(buttons);

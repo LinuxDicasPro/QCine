@@ -66,7 +66,7 @@ namespace QCineDebug {
         MESSAGE(STR(name)) << STR(fcolor.isEmpty() ? listcolor.at(int(Color::Yellow)) : fcolor)
                            << STR(QString("%1%2").arg(str, p))
                            << STR((scolor.isEmpty() && !parm.isEmpty()) ? listcolor.at(int(Color::Yellow)) : scolor)
-                           << STR(parm);
+                           << STR(parm) << "\x1b[m";
     }
 
 } // QCineDebug

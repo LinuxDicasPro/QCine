@@ -67,7 +67,7 @@ namespace QCineEnvironmentVariable {
         }
 
         /** QScrollArea para deixar o tamanho da janela de configuração menor */
-        auto scrollArea = new QScrollArea();
+        scrollArea = new QScrollArea();
         scrollArea->verticalScrollBar()->setContextMenuPolicy(Qt::NoContextMenu);
         scrollArea->horizontalScrollBar()->setContextMenuPolicy(Qt::NoContextMenu);
         scrollArea->setWidget(wscrool);
@@ -75,7 +75,7 @@ namespace QCineEnvironmentVariable {
         scrollArea->setFixedHeight(defScroolHeight);
 
         /** Layout principal */
-        auto envlayout = new QGridLayout();
+        envlayout = new QGridLayout();
         envlayout->setContentsMargins(QMargins());
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
@@ -86,12 +86,12 @@ namespace QCineEnvironmentVariable {
         envlayout->addWidget(scrollArea, 1, 0, 1, 2);
 
         /** Grupo para as variáveis de ambiente */
-        auto *envbox = new QGroupBox(tr("Variables"));
-        auto *envvar = new QVBoxLayout(envbox);
+        envbox = new QGroupBox(tr("Variables"));
+        envvar = new QVBoxLayout(envbox);
         envvar->addLayout(envlayout);
 
         /** Aba de variáveis de ambiente */
-        auto *enviromentBox = new QVBoxLayout(this);
+        enviromentBox = new QVBoxLayout(this);
         enviromentBox->addWidget(envbox);
         enviromentBox->addStretch(1);
     }

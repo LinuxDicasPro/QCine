@@ -11,8 +11,8 @@ namespace QCineDefaultPath {
         static const QRegularExpression regex("\\/(?:.(?!\\/))+$");
         oldDir = oldDir.remove(regex);
 
-        oldDir += '/';  // Controle
-        dir += '/';    // de erros
+        oldDir += '/';
+        dir += '/';
     }
 
     /**
@@ -59,7 +59,7 @@ namespace QCineDefaultPath {
             local.setFilter(QDir::Files);
 
             int i = int(local.entryList().size());
-            debug->msg(QString("Número de arquivos em %1").arg(str), "DefaultPath", {I(i)});
+            debug->msg(QString("Número de arquivos no diretório %1").arg(str), "DefaultPath", {I(i)});
 
             return i;
         }

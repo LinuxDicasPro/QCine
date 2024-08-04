@@ -37,7 +37,7 @@ namespace QCineControls {
         lslider->addWidget(slider);
 
         /** Layout dos botões */
-        auto controls = new QHBoxLayout();
+        controls = new QHBoxLayout();
         controls->setSpacing(2);
         controls->addStretch(1);
         controls->addWidget(stop);
@@ -47,7 +47,7 @@ namespace QCineControls {
         controls->addStretch(1);
 
         /** Layout principal */
-        auto mainlayout = new QVBoxLayout(this);
+        mainlayout = new QVBoxLayout(this);
         mainlayout->setContentsMargins(0, 0, 0, 2);
         mainlayout->setSpacing(0);
         mainlayout->addStretch(1);

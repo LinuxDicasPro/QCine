@@ -35,15 +35,15 @@ namespace QCineSettingsSlider {
         labelValue = new QLabel(QString::number(slider->value()));
 
         /** Layout associado a um widget para ajuste da posição */
-        auto *wlayout = new QWidget();
-        auto *layout = new QHBoxLayout(wlayout);
+        wlayout = new QWidget();
+        layout = new QHBoxLayout(wlayout);
         layout->setContentsMargins(0, 5, 0, 5);
         layout->addWidget(labelName);
         layout->addWidget(slider);
         layout->addWidget(labelValue);
 
         if (!unit.isEmpty()) {
-            auto l = new QLabel(unit);
+            l = new QLabel(unit);
             if (size == 0)
                 l->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
@@ -51,7 +51,7 @@ namespace QCineSettingsSlider {
         }
 
         /** Layout principal */
-        auto mainlayout = new QVBoxLayout(this);
+        mainlayout = new QVBoxLayout(this);
         mainlayout->setContentsMargins(QMargins());
         mainlayout->addWidget(wlayout);
     }

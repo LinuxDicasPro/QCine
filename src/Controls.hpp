@@ -61,7 +61,8 @@ namespace QCineControls {
         QCineButtons::Buttons *play{};
         QCineDebug::Debug *debug{};
         QCineSlider::Slider *slider{};
-        QVBoxLayout *lslider{};
+        QVBoxLayout *lslider{}, *mainlayout{};
+        QHBoxLayout *controls{};
     };
 
 } // QCineControls

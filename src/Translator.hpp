@@ -14,9 +14,12 @@ namespace QCineTranslator {
         Q_OBJECT
 
     public:
-        explicit Translator();
+        using QObject::QObject;
 
         void translate();
+
+    private:
+        QTranslator *translator{};
     };
 
 } // QCineTranslator

@@ -38,7 +38,7 @@ namespace QCineCheckMouse {
                     hideTimer->stop(); // Mouse se movendo, então não deve ocultar.
 
                 isMouseMove(true);
-                debug->msg("Mouse se movendo", "CheckMouse");
+                debug->msg("Mouse se movendo", "CheckMouse", {QCineDebug::DarkGreen});
 
                 if (isNoMouseCheck()) {
                     debug->msg("Emissão bloqueada", "CheckMouse");

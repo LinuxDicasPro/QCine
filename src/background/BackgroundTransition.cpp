@@ -91,7 +91,7 @@ namespace QCineBackgroundTransition {
     }
 
     /**
-     * Método principal para alterar as imagens para a exibição e transição.
+     * Função principal para alterar as imagens para a exibição e transição.
      * @param pixmap - O pixmap que vai armazenar a imagem.
      * @param item - O item pra setar o pixmaps.
      * @param random - Opcional, para setar números aleatórios.

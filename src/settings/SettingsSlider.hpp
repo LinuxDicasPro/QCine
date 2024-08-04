@@ -33,8 +33,10 @@ namespace QCineSettingsSlider {
 
     private:
         QSlider *slider{};
-        QLabel *labelName{};
-        QLabel *labelValue{};
+        QLabel *labelName{}, *labelValue{}, *l{};
+        QHBoxLayout *layout{};
+        QVBoxLayout *mainlayout{};
+        QWidget *wlayout{};
 
         int step{0}, fstep{0};
     };

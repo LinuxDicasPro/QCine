@@ -18,7 +18,7 @@ namespace QCineBackground {
         logo = new QCineBackgroundTransition::BackgroundTransition(true, QSize(coverSize, coverSize), defIcon);
 
         /** Layout principal */
-        auto layout = new QGridLayout(this);
+        layout = new QGridLayout(this);
         layout->setContentsMargins(QMargins());
         layout->addWidget(backgroundTransition, 0, 0);
         layout->addWidget(logo, 0, 0);

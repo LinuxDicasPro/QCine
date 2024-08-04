@@ -22,6 +22,7 @@ namespace QCineSettings {
 
         /** Botão de fechar */
         auto *closeButton = new QCineButtons::Buttons(defIconSize, QCineIcon::Close);
+        closeButton->pressColor(QColor(180, 68, 83));
         connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
 
         /** Layout do botão de fechar e título */
@@ -46,10 +47,8 @@ namespace QCineSettings {
             cl->setFixedSize(defRadiusColor, defRadiusColor);
             cl->setStyleSheet(QCineStyle::Style().styleRadiusColor(c));
             cl->setProperty("id", n);
+            cl->setChecked((QCineStyle::ColorStyle) cr == c);
             connect(cl, &QRadioButton::toggled, [&, cl](bool checked){ changeColorTheme(checked, cl); });
-
-            if ((QCineStyle::ColorStyle) cr == c)
-                cl->setChecked(true);
 
             checkColor->addWidget(cl);
             n++;
@@ -141,14 +140,14 @@ namespace QCineSettings {
                 &QCineSettings::Settings::handleComboBoxEngine);
 
         /** Engine do programa */
-        auto *enginebox = new QGroupBox(tr("Multimedia Engine"));
-        auto *controlsEngine = new QGridLayout(enginebox);
+        enginebox = new QGroupBox(tr("Multimedia Engine"));
+        controlsEngine = new QGridLayout(enginebox);
         controlsEngine->addWidget(new QLabel(tr("Current Engine") + ":"), 0, 0);
         controlsEngine->addWidget(engineCombo, 0, 1);
 
         /** Tema do programa */
-        auto *themebox = new QGroupBox(tr("Themes"));
-        auto *controlsTheme = new QGridLayout(themebox);
+        themebox = new QGroupBox(tr("Themes"));
+        controlsTheme = new QGridLayout(themebox);
         controlsTheme->addWidget(new QLabel(tr("Program Theme") + ":"), 0, 0);
         controlsTheme->addWidget(comboBox, 0, 1);
         controlsTheme->addLayout(checkColor, 0, 2);
@@ -157,59 +156,61 @@ namespace QCineSettings {
         controlsTheme->addWidget(gradck, 3, 0, 1, 3);
 
         /** Plano de fundo */
-        auto *bgbox = new QGroupBox(tr("Background"));
-        auto *bgTheme = new QGridLayout(bgbox);
+        bgbox = new QGroupBox(tr("Background"));
+        bgTheme = new QGridLayout(bgbox);
         bgTheme->addWidget(new QLabel(tr("Background Theme") + ":"), 0, 0);
         bgTheme->addWidget(bgCombo, 0, 1);
         bgTheme->addWidget(focus, 1, 0, 1, 2);
         bgTheme->addWidget(includedef, 2, 0, 1, 2);
 
         /** Layout dos efeitos dos controles */
-        auto *effcontrol = new QGroupBox(tr("Player Controls"));
-        auto *controllayout = new QVBoxLayout(effcontrol);
+        effcontrol = new QGroupBox(tr("Player Controls"));
+        controllayout = new QVBoxLayout(effcontrol);
         controllayout->addWidget(effecthide);
 
         /** Layout dos efeitos */
-        auto *effectgroup = new QGroupBox(tr("Transition Effects"));
-        auto *pllayout = new QVBoxLayout(effectgroup);
+        effectgroup = new QGroupBox(tr("Transition Effects"));
+        pllayout = new QVBoxLayout(effectgroup);
         pllayout->addWidget(effectduration);
         pllayout->addWidget(effectDisable);
 
         /** Efeitos do background */
-        auto *effectbg = new QGroupBox(tr("Background Effects"));
-        auto bglayout = new QVBoxLayout(effectbg);
+        effectbg = new QGroupBox(tr("Background Effects"));
+        bglayout = new QVBoxLayout(effectbg);
         bglayout->addWidget(effectdurationbg);
         bglayout->addWidget(effectDisableBG);
 
         /** Aba de customização */
-        auto *custom = new QWidget();
-        auto *customBox = new QVBoxLayout(custom);
+        custom = new QWidget();
+        customBox = new QVBoxLayout(custom);
         customBox->addWidget(themebox);
         customBox->addWidget(bgbox);
         customBox->addStretch(1);
 
         /** Aba de efeitos */
-        auto *effect = new QWidget();
-        auto *effectBox = new QVBoxLayout(effect);
+        effect = new QWidget();
+        effectBox = new QVBoxLayout(effect);
         effectBox->addWidget(effectgroup);
         effectBox->addWidget(effcontrol);
         effectBox->addWidget(effectbg);
         effectBox->addStretch(1);
 
         /** Aba de performance */
-        auto *performance = new QWidget();
-        auto *performanceBox = new QVBoxLayout(performance);
+        performance = new QWidget();
+        performanceBox = new QVBoxLayout(performance);
         performanceBox->addWidget(enginebox);
         performanceBox->addStretch(1);
 
-        /** Layout principal */
-        auto *layout = new QVBoxLayout(this);
-        auto *tabWidget = new QTabWidget(this);
+        /** Tabs das configurações */
+        tabWidget = new QTabWidget();
         //tabWidget->addTab(new QWidget(), tr("General")); //todo
         tabWidget->addTab(custom, tr("Custom"));
         tabWidget->addTab(effect, tr("Effects"));
         tabWidget->addTab(performance, tr("Performance"));
         tabWidget->addTab(env, tr("Environment Variables"));
+
+        /** Layout principal */
+        layout= new QVBoxLayout(this);
         layout->addLayout(clayout);
         layout->addWidget(tabWidget);
     }

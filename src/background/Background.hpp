@@ -24,7 +24,9 @@ namespace QCineBackground {
         void changeBlur(int i) { backgroundTransition->changeBlur(i); }
 
     private:
-        QCineBackgroundTransition::BackgroundTransition *backgroundTransition{}, *logo{};
+        QGridLayout *layout{};
+        QCineBackgroundTransition::BackgroundTransition *backgroundTransition{};
+        QCineBackgroundTransition::BackgroundTransition *logo{};
     };
 
 } // QCineBackground

@@ -26,10 +26,6 @@ namespace QCineButtons {
         this->setIcon(icon->setIcon(icoName));
     }
 
-    /**
-     * Aumentar o tamanho dos ícones.
-     * @param event - Evento do QT.
-     */
     void Buttons::enterEvent(QEnterEvent *event) {
         if (newcolor.isValid())
             this->setIcon(icon->setIcon(butonicon, newcolor));

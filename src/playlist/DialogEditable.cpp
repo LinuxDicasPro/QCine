@@ -16,7 +16,7 @@ namespace QCineDialogEditable {
         lineEdit->setAlignment(Qt::AlignCenter);
 
         /** Layout associado a janela que abrirá no fullscreen */
-        auto layout = new QHBoxLayout(this);
+        layout = new QHBoxLayout(this);
         layout->setContentsMargins(QMargins());
         layout->addWidget(lineEdit);
     }

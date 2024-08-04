@@ -29,6 +29,7 @@ namespace QCineDialogEditable {
         void showEvent(QShowEvent *event) override;
 
     private:
+        QHBoxLayout *layout{};
         QLineEdit *lineEdit{};
     };
 

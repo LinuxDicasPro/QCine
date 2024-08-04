@@ -36,10 +36,13 @@ namespace QCineComboBox {
 
     public:
         explicit ComboBox() {
-            auto aview = new ListView();
-            connect(aview, &ListView::enterBox, this, &ComboBox::enterBox);
-            this->setView(aview);
+            view = new ListView();
+            connect(view, &ListView::enterBox, this, &ComboBox::enterBox);
+            this->setView(view);
         }
+
+    private:
+        ListView *view{};
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"

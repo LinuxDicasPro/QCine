@@ -62,11 +62,14 @@ namespace QCinePlaylist {
 
         [[nodiscard]] bool isFirst() const { return first; }
 
+        QHBoxLayout *changePlaylist{}, *buttons{};
+        QVBoxLayout *mainlayout{}, *listlayout{};
+
         QCineDebug::Debug *debug{};
-        QCineWorkerPlaylist::WorkerPlaylist *workerPlaylist{};
         QCineFileDialog::FileDialog *fileDialog{};
         QCinePlaylistModel::PlaylistModel *playlistModel{};
         QCinePlaylistName::PlaylistName *playlistName{};
+        QCineWorkerPlaylist::WorkerPlaylist *workerPlaylist{};
         QThread *thread{};
         bool first{false};
     };

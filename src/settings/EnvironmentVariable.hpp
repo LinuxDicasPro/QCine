@@ -38,6 +38,11 @@ namespace QCineEnvironmentVariable {
     private:
         static bool checkNvidiaGpu();
 
+        QScrollArea *scrollArea{};
+        QGridLayout *envlayout{};
+        QGroupBox *envbox{};
+        QVBoxLayout *envvar{}, *enviromentBox{};
+
         QStringList audiobackend{"auto", "ffmpeg", "gstreamer"};
         QSettings *settings{};
         QStringList list = {

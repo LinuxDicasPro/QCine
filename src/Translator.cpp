@@ -7,13 +7,11 @@
 
 namespace QCineTranslator {
 
-    Translator::Translator() = default;
-
     /**
      * Procura automaticamente o arquivo de tradução do programa.
      */
     void Translator::translate() {
-        auto *translator = new QTranslator(this);
+        translator = new QTranslator(this);
         auto *debug = new QCineDebug::Debug();
 
         auto lang = QLocale::system().bcp47Name();
