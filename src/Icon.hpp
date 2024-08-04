@@ -29,7 +29,10 @@ namespace QCineIcon {
         Stop = 9,
         Previous = 10,
         Next = 11,
-        Close = 12
+        Close = 12,
+        Audio = 13,
+        Video = 14,
+        ItemPlay = 15
     };
 
     class Icon : public QObject {

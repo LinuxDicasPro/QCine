@@ -23,7 +23,10 @@ namespace QCineIcon {
                 QVariantList {"stop", QStyle::SP_MediaStop},
                 QVariantList {"previous", QStyle::SP_MediaSeekBackward},
                 QVariantList {"next", QStyle::SP_MediaSeekForward},
-                QVariantList {"close", QStyle::SP_DialogCloseButton}
+                QVariantList {"close", QStyle::SP_DialogCloseButton},
+                QVariantList {"audio", QStyle::SP_MediaPlay},
+                QVariantList {"video", QStyle::SP_MediaPlay},
+                QVariantList {"itemplay", QStyle::SP_MediaPlay}
         };
     }
 
