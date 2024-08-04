@@ -9,19 +9,19 @@
 
 namespace QCineDebug {
 
-#define GREEN       "\x1b[38;2;000;255;000m"
-#define RED         "\x1b[38;2;255;050;050m"
-#define YELLOW      "\x1b[38;2;255;255;000m"
-#define ORANGE      "\x1b[38;2;255;100;000m"
-#define CYAN        "\x1b[38;2;000;255;255m"
-#define DARKGREEN   "\x1b[38;2;000;150;020m"
-#define BLUE        "\x1b[38;2;000;120;255m"
-#define VIOLET      "\x1b[38;2;120;070;255m"
-#define LIGHTRED    "\x1b[38;2;255;100;100m"
-#define BLUEGREEN   "\x1b[38;2;000;150;100m"
-#define YELLOWGREEN "\x1b[38;2;170;255;000m"
-#define LIGHTGREEN  "\x1b[38;2;085;255;050m"
-#define PURPLE      "\x1b[38;2;100;100;255m"
+#define GREEN       "\x1b[38;2;000;255;000m" // debug
+#define RED         "\x1b[38;2;255;050;050m" // debug
+#define YELLOW      "\x1b[38;2;255;255;000m" // [default] [mouse parado]
+#define ORANGE      "\x1b[38;2;255;100;000m" // configuração
+#define CYAN        "\x1b[38;2;000;255;255m" //
+#define DARKGREEN   "\x1b[38;2;000;150;020m" // mouse movendo
+#define BLUE        "\x1b[38;2;000;120;255m" //
+#define VIOLET      "\x1b[38;2;120;070;255m" // reprodução
+#define LIGHTRED    "\x1b[38;2;255;100;100m" // erro
+#define BLUEGREEN   "\x1b[38;2;000;150;100m" //
+#define YELLOWGREEN "\x1b[38;2;170;255;000m" //
+#define LIGHTGREEN  "\x1b[38;2;085;255;050m" //
+#define PURPLE      "\x1b[38;2;100;100;255m" //
 
 #define MESSAGE(x) qDebug().nospace() << GREEN << "(" << RED << x << GREEN << ")" << RED << "::"
 #define STR(x) qUtf8Printable(x)
