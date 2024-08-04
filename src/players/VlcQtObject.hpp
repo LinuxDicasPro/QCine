@@ -3,13 +3,13 @@
 
 #include <QObject>
 
+#include <VideoInterface.hpp>
 #include <MediaPlayerInterface.hpp>
 
 #include <core/Common.h>
 #include <core/Instance.h>
 #include <core/Media.h>
 #include <core/MediaPlayer.h>
-#include <widgets/WidgetVideo.h>
 
 namespace QCineVlcQtObject {
 
@@ -39,7 +39,7 @@ namespace QCineVlcQtObject {
 //            player->play();
 //            player->setTime(t);
 
-        VlcWidgetVideo *getVideo() { return video; }
+        QWidget *getVideo() override { return video; }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"
@@ -63,9 +63,9 @@ namespace QCineVlcQtObject {
     private:
         void initPlayer();
 
+        QCineVideoInterface::VlcVideo *video{};
         VlcInstance *instance{};
         VlcMediaPlayer *player{};
-        VlcWidgetVideo *video{};
         QStringList args{};
         QString media{};
     };

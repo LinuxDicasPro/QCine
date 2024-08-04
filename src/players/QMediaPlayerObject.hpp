@@ -5,9 +5,9 @@
 #include <QMediaPlayer>
 #include <QObject>
 #include <QVideoFrame>
-#include <QVideoWidget>
 #include <QVideoSink>
 
+#include <VideoInterface.hpp>
 #include <MediaPlayerInterface.hpp>
 
 namespace QCineMediaPlayerObject {
@@ -30,7 +30,7 @@ namespace QCineMediaPlayerObject {
 
         void setSeek(int i) override { player->setPosition((qint64)i); }
 
-        QVideoWidget *getVideo() { return video; }
+        QWidget *getVideo() override { return video; }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"
@@ -54,9 +54,10 @@ namespace QCineMediaPlayerObject {
         void changePosition(qint64 i) { Q_EMIT positionChange(i); }
 
     private:
+        QAudioOutput *audio{};
         QMediaPlayer *player{};
         QVideoSink *sink{};
-        QVideoWidget *video{};
+        QCineVideoInterface::VideoWidget *video{};
     };
 
 } // QCineMediaPlayerObject

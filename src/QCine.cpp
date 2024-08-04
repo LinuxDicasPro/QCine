@@ -126,7 +126,6 @@ namespace QCine {
         stackedWidget = new QStackedWidget();
         stackedWidget->addWidget(background);
         stackedWidget->addWidget(player->widget());
-        stackedWidget->addWidget(player->vlcVideo());
 
         /** Layout para sobreposição de outros widgets */
         auto hbox = new QGridLayout();
@@ -248,13 +247,8 @@ namespace QCine {
      */
     void QCine::changeStack(bool b) {
         if (b) {
-            if (settingsManager->videoEngine() == QCineSettingsManager::UseVlcQT) {
-                debug->msg("Setando o player do VlcQt", "QCine");
-                stackedWidget->setCurrentWidget(player->vlcVideo());
-            } else {
-                debug->msg("Setando o player do QMediaPlayer", "QCine");
-                stackedWidget->setCurrentWidget(player->widget());
-            }
+            debug->msg("Setando o player de vídeo", "QCine");
+            stackedWidget->setCurrentWidget(player->widget());
         } else {
             debug->msg("Setando o visualizador de plano de fundo", "QCine");
             stackedWidget->setCurrentWidget(background);
@@ -355,7 +349,9 @@ namespace QCine {
      * Alternado a engine de reprodução do Programa.
      */
     void QCine::changeEngine() {
+        stackedWidget->removeWidget(player->widget());
         player->changeEngine();
+        stackedWidget->addWidget(player->widget());
         controls->playBtn()->btn(QCineIcon::Play);
         controls->sliderEnabled(false);
     }
@@ -391,7 +387,7 @@ namespace QCine {
     }
 
     /**
-     * Método para alterar o modo tela cheia do programa.
+     * Função para alterar o modo tela cheia do programa.
      */
     void QCine::changeFullscreen() {
         if (this->isFullScreen()) {

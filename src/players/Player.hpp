@@ -7,7 +7,6 @@ extern "C" {
 }
 
 #include <QObject>
-#include <QVideoWidget>
 
 #include <Debug.hpp>
 #include <QMediaPlayerObject.hpp>
@@ -34,9 +33,7 @@ namespace QCinePlayer {
 
         void setCurrentMedia(const QString &str) { currentFile = str; }
 
-        QVideoWidget *widget() { return mediaPlayer->getVideo(); }
-
-        VlcWidgetVideo *vlcVideo() { return vlcPlayer->getVideo(); }
+        QWidget *widget() { return player->getVideo(); }
 
         void play(const QString &str = nullptr);
 

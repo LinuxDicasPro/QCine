@@ -6,7 +6,7 @@
 
 namespace QCineVlcQtObject {
     VlcQtObject::VlcQtObject() {
-        video = new VlcWidgetVideo();
+        video = new QCineVideoInterface::VlcVideo();
         initPlayer();
     }
 
@@ -32,7 +32,7 @@ namespace QCineVlcQtObject {
 
         instance = new VlcInstance(args, this);
         player = new VlcMediaPlayer(instance);
-        player->setVideoWidget(video);
+        player->setVideoWidget(video->widget());
         video->setMediaPlayer(player);
 
         connect(player, &VlcMediaPlayer::lengthChanged, this, &VlcQtObject::changeDuration);

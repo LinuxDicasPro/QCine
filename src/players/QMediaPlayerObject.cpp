@@ -8,8 +8,8 @@ namespace QCineMediaPlayerObject {
 
     QMediaPlayerObject::QMediaPlayerObject() {
         sink = new QVideoSink();
-        video = new QVideoWidget();
-        auto audio = new QAudioOutput();
+        video = new QCineVideoInterface::VideoWidget();
+        audio = new QAudioOutput();
 
         player = new QMediaPlayer();
         player->setVideoOutput(sink);
