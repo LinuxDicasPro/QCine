@@ -11,3 +11,5 @@ CTestTestfile.cmake
 _deps
 /appimage/
 /cmake-build-debug/
+/test_audio_metadata/
+/test_video/
