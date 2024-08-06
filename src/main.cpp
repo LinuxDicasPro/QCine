@@ -14,8 +14,9 @@
 
 #include <SingleApplication>
 
-#include <QLoggingCategory>
 #include <QCommandLineParser>
+#include <QLoggingCategory>
+#include <QTranslator>
 
 #include <Debug.hpp>
 #include <EnvironmentVariable.hpp>
@@ -24,12 +25,24 @@
 #include <QCine.hpp>
 #include <SettingsManager.hpp>
 #include <Style.hpp>
-#include <Translator.hpp>
 #include <Version.hpp>
 
 int main(int argc, char *argv[]) {
     SingleApplication QCINE(argc, argv, true, SingleApplication::Mode::SecondaryNotification);
     QCineMessageReceiver::MessageReceiver msg;
+    auto *debug = new QCineDebug::Debug();
+
+    /** Tradução */
+    QTranslator translator;
+    auto lang = QLocale::system().bcp47Name();
+    auto trFile = QCineDefaultPath::DefaultPath().defalutPath(QString("lang/qcine_%1.qm").arg(lang));
+
+    if (translator.load(trFile)) {
+        debug->msg("Carregando tradução", "Translator", {trFile});
+        SingleApplication::installTranslator(&translator);
+    } else {
+        debug->msg("Tradução não dísponível", "Translator", {QCineDebug::Color::LightRed});
+    }
 
     /** Definições do Programa */
     QApplication::setApplicationName("QCine");
@@ -48,7 +61,6 @@ int main(int argc, char *argv[]) {
 #pragma clang diagnostic pop
 
     /** Debug inicial */
-    auto *debug = new QCineDebug::Debug();
     debug->msg("Versão do programa", "Main", {QApplication::applicationVersion()});
     debug->msg("Pid do programa", "Main", {QString::number(QApplication::applicationPid())});
 
@@ -60,13 +72,8 @@ int main(int argc, char *argv[]) {
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #endif
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);
-
-//    AA_CompressHighFrequencyEvents
-//    AA_ForceRasterWidgets
-//    AA_UseDesktopOpenGL
-//    AA_UseOpenGLES
-//    AA_UseSoftwareOpenGL
-//    AA_ShareOpenGLContexts
+    QApplication::setAttribute(Qt::AA_CompressHighFrequencyEvents, true);
+    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
 
     QCommandLineParser parser;
     parser.addHelpOption();
@@ -89,9 +96,7 @@ int main(int argc, char *argv[]) {
     QObject::connect(&QCINE, &SingleApplication::instanceStarted, [&QCine, &debug]() {
         debug->msg("Trazendo janela para o topo", "Main");
 
-#if defined(Q_OS_WIN)
-        QCine.activateWindow();
-#elif defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX)
         auto eFlags = QCine.windowFlags();
         QCine.setWindowFlags(eFlags | Qt::WindowStaysOnTopHint);
         QCine.show();
@@ -99,14 +104,13 @@ int main(int argc, char *argv[]) {
         QCine.show();
 #endif
 
+        QCine.activateWindow();
     });
 
     QObject::connect(&QCINE, &SingleApplication::receivedMessage, &msg,
                      &QCineMessageReceiver::MessageReceiver::receivedMessage);
     QObject::connect(&msg, &QCineMessageReceiver::MessageReceiver::args, &QCine,
                      &QCine::QCine::addArgs);
-
-    QCineTranslator::Translator().translate();
 
     if (QCineSettingsManager::SettingsManager().windowMaximize())
         QCine.showMaximized();
