@@ -22,7 +22,7 @@ namespace QCineSettings {
 
         /** Botão de fechar */
         auto *closeButton = new QCineButtons::Buttons(defIconSize, QCineIcon::Close);
-        closeButton->pressColor(QColor(180, 68, 83));
+        closeButton->pressColor(QColor(230, 130, 140));
         connect(closeButton, &QPushButton::clicked, this, &QDialog::close);
 
         /** Layout do botão de fechar e título */
