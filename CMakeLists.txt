@@ -47,6 +47,7 @@ find_package(Qt${QT_VERSION} COMPONENTS
         Core
         DBus
         Gui
+        LinguistTools
         Multimedia
         MultimediaWidgets
         Widgets
@@ -117,9 +118,9 @@ target_link_libraries(${PRG_NAME}
         ${FFMPEG_LIBRARIES}
 )
 
-add_custom_target(appimage
-#        COMMAND ${CMAKE_COMMAND} -E echo "Creating AppImage..."
-#        COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/create_appimage.sh
-        DEPENDS ${PRG_NAME}
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+add_custom_command(
+        TARGET ${PRG_NAME}
+        COMMAND cd ${CMAKE_SOURCE_DIR}/lang
+        COMMAND ${CMAKE_SOURCE_DIR}/lang/make_pt_qm
+        COMMENT "Gerando tradução do programa"
 )
