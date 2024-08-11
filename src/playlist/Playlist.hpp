@@ -39,6 +39,8 @@ namespace QCinePlaylist {
 
         void isFirstPlay(const QString &media);
 
+        void itemPlay(const QString &media);
+
         void dialogShow(bool b);
 
         void isClear();

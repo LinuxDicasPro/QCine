@@ -1,12 +1,16 @@
 /**
  * Modelo simplificado de lista baseado no QListWidget para armazenar as informações
- * de forma fácil e facilitar a manipulação das informações, já que tem muito método já pronto.
+ * de forma fácil e facilitar a manipulação das informações, já que tem muito recurso já pronto.
  */
 
 #include "PlaylistModel.hpp"
 
 namespace QCinePlaylistModel {
-    PlaylistModel::PlaylistModel() = default;
+    PlaylistModel::PlaylistModel() {
+        this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        this->setStyleSheet(QCineStyle::Style().playlistStyle());
+    }
 
     /**
      * Descobrindo a localização de um arquivo armazenado na lista.
@@ -17,10 +21,12 @@ namespace QCinePlaylistModel {
         if (this->count() == 0)
             return (-1);
 
-        QList<QListWidgetItem*> items = this->findItems(str, Qt::MatchExactly);
-
-        if (!items.isEmpty())
-            return this->row(items.first());
+        int i{0};
+        foreach(MediaFileInfo m, mediaFileList) {
+            if (QString::compare(m.file, str, Qt::CaseSensitive) == 0)
+                return i;
+            i++;
+        }
 
         return (-1);
     }
@@ -34,7 +40,7 @@ namespace QCinePlaylistModel {
         if (this->count() == 0)
             return {};
 
-        return this->item(i)->text();
+        return mediaFileList.at(i).file;
     }
 
     /**
@@ -44,9 +50,26 @@ namespace QCinePlaylistModel {
     void PlaylistModel::insertListItem(const QStringList &list) {
         MediaFileInfo mediaFile;
         mediaFile.file = list.at(0);
+        mediaFile.duration = list.at(1);
+        mediaFile.format = list.at(2);
+        mediaFile.title = list.at(3);
+        mediaFile.artist = list.at(4);
+        mediaFile.info1 = list.at(5);
+        mediaFile.info2 = list.at(6);
+        mediaFile.type = list.at(7);
 
         mediaFileList.append(mediaFile);
-        this->addItem(mediaFile.file);
+
+        auto itemW = new QCinePlaylistItem::PlaylistItem(mediaFile);
+        connect(itemW, &QCinePlaylistItem::PlaylistItem::playing, [&, itemW](){
+            Q_EMIT playing(itemW->getFile());
+        });
+
+        it = new QListWidgetItem();
+        it->setSizeHint(QSize(this->sizeHint().width(), itemW->sizeHint().height()));
+
+        this->addItem(it);
+        this->setItemWidget(it, itemW);
     }
 
     /**
@@ -85,6 +108,18 @@ namespace QCinePlaylistModel {
             return indexAt(indexMax);
 
         return indexAt(i);
+    }
+
+    /**
+     * Acessando o título da mídia e demais informações para o título do programa.
+     * @param str - Arquivo atual sendo reproduzido.
+     * @return Título
+     */
+    QString PlaylistModel::getName(const QString &str) {
+        if (this->count() == 0)
+            return str; // Em caso de não pegar o nome a tempo por alguma zebra
+
+        return mediaFileList.at(this->indexOf(str)).title;
     }
 
     /**

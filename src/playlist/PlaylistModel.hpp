@@ -2,12 +2,7 @@
 #define QCINE_PLAYLISTMODEL_HPP
 
 #include <QListWidget>
-
-struct MediaFileInfo {
-    QString file;
-};
-
-Q_DECLARE_METATYPE(MediaFileInfo)
+#include <PlaylistItem.hpp>
 
 namespace QCinePlaylistModel {
 
@@ -20,6 +15,8 @@ namespace QCinePlaylistModel {
         int countIndex() { return this->count() - 1; }
 
         void insertListItem(const QStringList &list);
+
+        QString getName(const QString &str);
 
         QString indexAt(int i);
 
@@ -35,7 +32,20 @@ namespace QCinePlaylistModel {
 
         void saveListMetaType();
 
+        QCinePlaylistItem::PlaylistItem *getItem(const QString &str) {
+            return dynamic_cast<QCinePlaylistItem::PlaylistItem *>(this->itemWidget(this->item(indexOf(str))));
+        }
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "NotImplementedFunctions"
+
+    Q_SIGNALS:
+        void playing(const QString &str);
+
+#pragma clang diagnostic pop
+
     private:
+        QListWidgetItem *it{};
         QList<MediaFileInfo> mediaFileList{};
     };
 

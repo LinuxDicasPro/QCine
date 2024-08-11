@@ -67,6 +67,7 @@ namespace QCine {
         /** Playlist do programa */
         playlist = new QCinePlaylist::Playlist();
         connect(playlist, &QCinePlaylist::Playlist::isFirstPlay, this, &QCine::firstPlay);
+        connect(playlist, &QCinePlaylist::Playlist::itemPlay, this, &QCine::play);
         connect(playlist, &QCinePlaylist::Playlist::isClear, this, &QCine::playlistIsCleaned);
         connect(playlist, &QCinePlaylist::Playlist::noEffect, this, &QCine::changeplaylist);
         connect(playlist, &QCinePlaylist::Playlist::enterBox, this, &QCine::statusComboBox);
@@ -172,10 +173,20 @@ namespace QCine {
      * @param file - Arquivo multimídia.
      */
     void QCine::play(const QString &file) {
+        playlist->model()->clearSelection();
+
+        if (!player->currentMedia().isEmpty())
+            playlist->model()->getItem(player->currentMedia())->unselectColor();
+
         player->play(file);
         controls->playBtn()->btn(QCineIcon::Pause);
         controls->sliderEnabled(true);
-        this->setWindowTitle(player->currentMedia());
+        this->setWindowTitle(playlist->model()->getName(player->currentMedia()));
+
+        if (!player->currentMedia().isEmpty()) {
+            playlist->model()->getItem(player->currentMedia())->selectColor();
+            playlist->model()->setCurrentRow(playlist->model()->indexOf(player->currentMedia()));
+        }
     }
 
     /**
@@ -202,6 +213,10 @@ namespace QCine {
         if (player->isPlaying()) {
             player->stop();
             stackedWidget->setCurrentWidget(background);
+            playlist->model()->clearSelection();
+
+            if (!player->currentMedia().isEmpty())
+                playlist->model()->getItem(player->currentMedia())->unselectColor();
         }
         controls->playBtn()->btn(QCineIcon::Play);
         controls->sliderPosition(0);

@@ -13,6 +13,7 @@ namespace QCinePlaylist {
         this->setStyleSheet(QCineStyle::Style().widgetStyle(QCineStyle::Playlist));
         debug = new QCineDebug::Debug();
         playlistModel = new QCinePlaylistModel::PlaylistModel();
+        connect(playlistModel, &QCinePlaylistModel::PlaylistModel::playing, this, &Playlist::itemPlay);
 
         /** Editor do nome da playlist atual */
         playlistName = new QCinePlaylistName::PlaylistName();
@@ -57,12 +58,17 @@ namespace QCinePlaylist {
         buttons->addStretch(1);
         buttons->addWidget(clear);
 
+        /** Layout da playlist */
+        listlayout = new QVBoxLayout();
+        listlayout->setContentsMargins(5, 5 ,5 ,5);
+        listlayout->addWidget(playlistModel);
+
         /** Layout principal */
         mainlayout = new QVBoxLayout(this);
         mainlayout->setContentsMargins(0, 5 ,0 ,5);
         mainlayout->addLayout(changePlaylist);
         mainlayout->addLayout(buttons);
-        mainlayout->addStretch(1);
+        mainlayout->addLayout(listlayout);
     }
 
     /**
@@ -72,7 +78,7 @@ namespace QCinePlaylist {
     void Playlist::addPlaylist(const QStringList &media) {
         playlistModel->insertListItem(media);
 
-        if (!isFirst()) {
+        if (not isFirst()) {
             Q_EMIT isFirstPlay(media.at(0));
             isFirst(true);
         }
@@ -86,8 +92,18 @@ namespace QCinePlaylist {
     void Playlist::addFilesDialog(int result) {
         Q_EMIT finish(); // QFileDialog Fechado.
 
-        if (result != QDialog::Rejected)
-            processFiles(fileDialog->selectedFiles());
+        if (result != QDialog::Rejected) {
+            QStringList list{};
+            foreach(QString str, fileDialog->selectedFiles()) {
+                if (playlistModel->indexOf(str) == (-1))
+                    list << str;
+            }
+
+            if (list.isEmpty())
+                return;
+
+            processFiles(list);
+        }
     }
 
     /**
