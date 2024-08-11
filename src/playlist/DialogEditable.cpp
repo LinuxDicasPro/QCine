@@ -7,6 +7,7 @@
 #include "DialogEditable.hpp"
 
 namespace QCineDialogEditable {
+
     DialogEditable::DialogEditable() {
         this->setAttribute(Qt::WA_TranslucentBackground);
         this->setWindowFlag(Qt::Popup, true);
@@ -30,4 +31,5 @@ namespace QCineDialogEditable {
         lineEdit->setFocus();
         QWidget::showEvent(event);
     }
+
 } // QCineDialogEditable

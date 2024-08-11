@@ -37,6 +37,7 @@ namespace QCinePlaylist {
         auto add = new QCineButtons::Buttons(btnIconSize, QCineIcon::Add);
         auto remove = new QCineButtons::Buttons(btnIconSize, QCineIcon::Remove);
         auto clear = new QCineButtons::Buttons(btnIconSize, QCineIcon::ClearList);
+        clear->pressColor(QColor(230, 130, 140));
         connect(add, &QCineButtons::Buttons::clicked, this, &Playlist::addFiles);
 
         /** Layout para as playlists salvas */
@@ -67,13 +68,13 @@ namespace QCinePlaylist {
      * Adicionando arquivos multimídia validados para a plaulist do programa.
      * @param media - Lista de informações do arquivo.
      */
-    void Playlist::addPlaylist(const QStringList &media) { // todo
+    void Playlist::addPlaylist(const QStringList &media) {
+        playlistModel->insertListItem(media);
+
         if (!isFirst()) {
             Q_EMIT isFirstPlay(media.at(0));
             isFirst(true);
         }
-
-        playlistModel->insertListItem(media);
     }
 
     /**

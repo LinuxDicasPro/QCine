@@ -32,6 +32,9 @@ namespace QCinePlayer {
      * @param media - Arquivo a ser reproduzido.
      */
     void Player::play(const QString &media) {
+        if (currentFile.isEmpty() and media.isEmpty())
+            return;
+
         if (!media.isEmpty()) {
             player->setMedia(media);
             currentFile = media;
@@ -110,8 +113,8 @@ namespace QCinePlayer {
      * Implementação própria e precisa para verificação de vídeo.
      */
     void Player::isVideo() {
-        AVFormatContext* pFormatContext = avformat_alloc_context();
-        if (!pFormatContext) {
+        AVFormatContext *pFormatContext = avformat_alloc_context();
+        if (not pFormatContext) {
             Q_EMIT checkVideo(false);
             return;
         }
@@ -129,13 +132,15 @@ namespace QCinePlayer {
             return;
         }
 
-        bool hasValidVideo = false;
+        bool hasValidVideo{false};
         for (unsigned int i = 0; i < pFormatContext->nb_streams; i++) {
-            AVCodecParameters* codecParameters = pFormatContext->streams[i]->codecpar;
-            if (codecParameters->codec_type == AVMEDIA_TYPE_VIDEO) {
-                if (codecParameters->width > 0 && codecParameters->height > 0) {
-                    hasValidVideo = true;
-                    break;
+            AVStream *stream = pFormatContext->streams[i];
+            AVCodecParameters* codecParameters = stream->codecpar;
+            if (codecParameters->codec_type == AVMEDIA_TYPE_VIDEO and
+                not (stream->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
+                    if (codecParameters->width > 0 and codecParameters->height > 0) {
+                        hasValidVideo = true;
+                        break;
                 }
             }
         }

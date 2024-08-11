@@ -73,7 +73,6 @@ int main(int argc, char *argv[]) {
 #endif
     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings, true);
     QApplication::setAttribute(Qt::AA_CompressHighFrequencyEvents, true);
-    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts, true);
 
     QCommandLineParser parser;
     parser.addHelpOption();
