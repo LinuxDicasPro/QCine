@@ -17,6 +17,8 @@ namespace QCineStyle {
 #define styleRadiusSize 18
 #define defSpaceSlider 5
 #define spaceRoundSlider 10
+#define pLabel 100
+#define pSelect 80
 
     Style::Style() {
         settingsManager = new QCineSettingsManager::SettingsManager();
@@ -30,9 +32,9 @@ namespace QCineStyle {
     }
 
      /**
-      * O estilo dos widgets vai ser definido aqui.
+      * Estilização dos widgets dos controles de reprodução e playlist do programa.
       * @param style - Conferir se é controle ou playlist.
-      * @return QString
+      * @return Estilo dos Controles e Playlist
       */
     QString Style::widgetStyle(Styles style) {
          QString color{QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity)};
@@ -81,8 +83,8 @@ namespace QCineStyle {
     }
 
     /**
-     * Alterar o tema das configurações e demais caixas de diálogos.
-     * @return QString
+     * Estilização do tema das configurações e demais caixas de diálogos.
+     * @return Estilo do Fundo
      */
     QString Style::dialogStyle() {
         QString color{QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity)};
@@ -106,8 +108,8 @@ namespace QCineStyle {
     }
 
     /**
-     * Customização para o menu de contexto.
-     * @return QString
+     * Customização para o menu de contexto do programa.
+     * @return Estilo do Menu
      */
     QString Style::contextMenuStyle() {
         QString color{QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity)};
@@ -158,7 +160,7 @@ namespace QCineStyle {
     /**
      * Estilo para pintar os QRadioButtons conforme o tema de cores dos controles.
      * @param style - Estilo de cor.
-     * @return QString
+     * @return Estilo dos Botões de Cor
      */
     QString Style::styleRadiusColor(ColorStyle style) {
         QString color{QString("rgb(%1, %2, %3)").arg(I(b.red()), I(b.green()), I(b.blue()))};
@@ -178,7 +180,7 @@ namespace QCineStyle {
 
     /**
      * Esquema normal de cores para o slider de reprodução.
-     * @return QString
+     * @return Estilo do Slider
      */
     QString Style::sliderStyle() {
         return QString("QSlider::groove {"
@@ -204,8 +206,61 @@ namespace QCineStyle {
     }
 
     /**
+     * Função para customizar o label usado para mostrar as informações da mídia importada.
+     * @return Estilo do Fundo do Texto
+     */
+    QString Style::labelStyle(int i) {
+        return QString("QLabel {"
+                       "    background-color: rgba(0, 0, 0, %1);"
+                       "    border-radius: %2px;"
+                       "    padding-left: 10px;"
+                       "    padding-right: 10px;"
+                       "}").arg(I(pLabel), I(i));
+    }
+
+    /**
+     * Esse estilo é uma cor específica escolhida a mão conforme a consistência com a interface. O objetivo é
+     * destacar o item com uma cor que permanecerá mesmo que outro item seja selecionado.
+     * @return Estilo da Seleção
+     */
+    QString Style::itemSelectStyle() {
+        return QString("QDialog {"
+                       "    border: none;"
+                       "    background-color: rgba(%1, %2, %3, %4);"
+                       "    border-radius: 10px; "
+                       "}").arg(I(90), I(70), I(160), I(150));
+    }
+
+    /**
+     * Função para customizar o label usado para mostrar a capa ou os ícones de áudio ou vídeo
+     * para os arquivos multimídia importados.
+     * @return Estilo da Label
+     */
+    QString Style::labelPixmapStyle() {
+        return QString("QLabel {"
+                       "    border: 2px outset rgb(%2, %3, %4);"
+                       "    background-color: rgba(0, 0, 0, %1);"
+                       "    border-radius: 10px; "
+                       "}").arg(I(pLabel), I(t.red()), I(t.green()), I(t.blue()));
+    }
+
+    /**
+     * Estilo da lista de reprodução que irá exibir as mídias ou a lista importada.
+     * @return Estilo da Playlist
+     */
+    QString Style::playlistStyle() {
+        return QString("QListWidget {"
+                       "    background-color: transparent;"
+                       "}"
+                       "QListWidget::item:selected {"
+                       "    background-color: rgba(%1, %2, %3, %4);"
+                       "    border-radius: 10px;"
+                       "}").arg(I(m.red()), I(m.green()), I(m.blue()), I(pSelect));
+    }
+
+    /**
      * Retorna a margem padrão para o layout dos controles e playlist.
-     * @return QMargins
+     * @return Margem principal
      */
     QMargins Style::marginStyle() {
         int i{settingsManager->programTheme() == QCineSettingsManager::Rounded ? roundMargin : defMargin};
@@ -214,7 +269,7 @@ namespace QCineStyle {
 
     /**
      * Retorna a margem padrão para o layout da playlist para o gradient.
-     * @return QMargins
+     * @return Margem Auxiliar
      */
     QMargins Style::internalMarginStyle(Styles style) {
         int i{settingsManager->programTheme() == QCineSettingsManager::Gradient ? roundMargin : defMargin};
@@ -226,7 +281,7 @@ namespace QCineStyle {
 
     /**
      * Retorna o espaço para o layout dos controles e playlist.
-     * @return int
+     * @return Espaço entre eles
      */
     int Style::spaceStyle() {
         if (settingsManager->programTheme() == QCineSettingsManager::Rounded)
@@ -240,7 +295,7 @@ namespace QCineStyle {
 
     /**
      * Espaçamento para o slider que mostra o progresso de reprodução.
-     * @return QMargins
+     * @return Espaçamento Extra
      */
     QMargins Style::spaceSlider() {
         int i{settingsManager->programTheme() == QCineSettingsManager::Rounded ? spaceRoundSlider : defSpaceSlider};
@@ -249,7 +304,7 @@ namespace QCineStyle {
 
     /**
      * O tema padrão do programa vai ser o Breeze Dark e deu.
-     * @return QPallete
+     * @return Paleta do Tema
      */
     QPalette Style::darkTheme() {
         QPalette darkTheme;

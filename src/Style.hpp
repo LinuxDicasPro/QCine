@@ -39,6 +39,14 @@ namespace QCineStyle {
 
         QString sliderStyle();
 
+        static QString itemSelectStyle();
+
+        static QString labelStyle(int i);
+
+        QString labelPixmapStyle();
+
+        QString playlistStyle();
+
         QMargins marginStyle();
 
         QMargins internalMarginStyle(Styles style = Styles::Default);
@@ -51,6 +59,7 @@ namespace QCineStyle {
 
     private:
         QCineSettingsManager::SettingsManager *settingsManager{};
+
         QColor b = QPalette().color(QPalette::Window);
         QColor t = QPalette().color(QPalette::WindowText);
         QColor m = QPalette().color(QPalette::Highlight);
