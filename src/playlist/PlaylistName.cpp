@@ -6,8 +6,12 @@
 
 namespace QCinePlaylistName {
     PlaylistName::PlaylistName() {
+        QFont font;
+        font.setBold(true);
+
         this->setText(tr("Current Playlist"));
         this->setAlignment(Qt::AlignCenter);
+        this->setFont(font);
 
         dialogEditable = new QCineDialogEditable::DialogEditable();
         connect(dialogEditable, &QCineDialogEditable::DialogEditable::enterBox, this, &PlaylistName::updateEdit);
