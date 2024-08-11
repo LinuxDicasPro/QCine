@@ -7,9 +7,9 @@ extern "C" {
 
 #include <QImage>
 #include <QObject>
-#include <QTime>
 
 #include <Debug.hpp>
+#include <MediaInfo.hpp>
 
 namespace QCineWorkerPlaylist {
 
@@ -37,12 +37,8 @@ namespace QCineWorkerPlaylist {
     private:
         static bool isMediaFile(const char* filename);
 
-        static QString formatDuration(int duration);
-
         QCineDebug::Debug *debug{};
         QStringList strList{};
-
-        std::string calculateDuration(AVFormatContext *fmt_ctx);
     };
 
 } // QCineWorkerPlaylist

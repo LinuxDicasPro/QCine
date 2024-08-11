@@ -20,10 +20,9 @@ namespace QCineWorkerPlaylist {
         foreach(QString str, strList) {
             QImage image(str); // Imagens passam pela verificação
 
-            if(isMediaFile(str.toStdString().c_str()) && image.isNull()) {
-
-
-                Q_EMIT mediaFile({str});
+            if(isMediaFile(str.toStdString().c_str()) and image.isNull()) {
+                QCineMediaInfo::MediaInfo info;
+                Q_EMIT mediaFile(info.getMediaInfo(str));
             }
         }
 
