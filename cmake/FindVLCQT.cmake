@@ -99,8 +99,6 @@ endif ()
 set(VLCQT_WIDGETS_SRCS
         ${PWDW}/ControlAudio.cpp
         ${PWDW}/ControlVideo.cpp
-        ${PWDW}/WidgetSeek.cpp
-        ${PWDW}/WidgetSeekProgress.cpp
         ${PWDW}/WidgetVideo.cpp
         ${PWDW}/WidgetVolumeSlider.cpp
 )
@@ -109,8 +107,6 @@ set(VLCQT_WIDGETS_HEADERS
         ${PWDW}/ControlAudio.h
         ${PWDW}/ControlVideo.h
         ${PWDW}/SharedExportWidgets.h
-        ${PWDW}/WidgetSeek.h
-        ${PWDW}/WidgetSeekProgress.h
         ${PWDW}/WidgetVideo.h
         ${PWDW}/WidgetVolumeSlider.h
 )
