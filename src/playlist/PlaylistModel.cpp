@@ -87,6 +87,14 @@ namespace QCinePlaylistModel {
         return indexAt(i);
     }
 
+    /**
+     * Limpando os itens da lista e da playlist.
+     */
+    void PlaylistModel::clearList() {
+        mediaFileList.clear();
+        this->clear();
+    }
+
     void PlaylistModel::loadListMetaType() {
     }
 

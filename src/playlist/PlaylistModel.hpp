@@ -29,6 +29,8 @@ namespace QCinePlaylistModel {
 
         QString indexOfPrevious(const QString &str);
 
+        void clearList();
+
         void loadListMetaType();
 
         void saveListMetaType();

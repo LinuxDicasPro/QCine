@@ -39,6 +39,7 @@ namespace QCinePlaylist {
         auto clear = new QCineButtons::Buttons(btnIconSize, QCineIcon::ClearList);
         clear->pressColor(QColor(230, 130, 140));
         connect(add, &QCineButtons::Buttons::clicked, this, &Playlist::addFiles);
+        connect(clear, &QCineButtons::Buttons::clicked, this, &Playlist::clearPlaylist);
 
         /** Layout para as playlists salvas */
         changePlaylist = new QHBoxLayout();
@@ -101,6 +102,15 @@ namespace QCinePlaylist {
         workerPlaylist->setList(str);
         isFirst(false);
         thread->start();
+    }
+
+    /**
+     * Função para a limpeza da playlist.
+     */
+    void Playlist::clearPlaylist() {
+        debug->msg("Limpando todos os itens da Playlist", "Playlist");
+        playlistModel->clearList();
+        Q_EMIT isClear();
     }
 
     void Playlist::enterEvent(QEnterEvent *event) {

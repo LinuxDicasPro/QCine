@@ -66,6 +66,8 @@ namespace QCine {
 
         void changeEndMedia();
 
+        void playlistIsCleaned();
+
         void changeStack(bool b);
 
         void changeControls(bool b);

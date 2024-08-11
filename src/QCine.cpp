@@ -67,6 +67,7 @@ namespace QCine {
         /** Playlist do programa */
         playlist = new QCinePlaylist::Playlist();
         connect(playlist, &QCinePlaylist::Playlist::isFirstPlay, this, &QCine::firstPlay);
+        connect(playlist, &QCinePlaylist::Playlist::isClear, this, &QCine::playlistIsCleaned);
         connect(playlist, &QCinePlaylist::Playlist::noEffect, this, &QCine::changeplaylist);
         connect(playlist, &QCinePlaylist::Playlist::enterBox, this, &QCine::statusComboBox);
         connect(playlist, &QCinePlaylist::Playlist::dialogShow, this, &QCine::changeFileDialog);
@@ -240,6 +241,14 @@ namespace QCine {
         }
         next();
     }
+
+    /**
+     * Executando as ações após a limpeza da playlist.
+     */
+     void QCine::playlistIsCleaned() {
+         player->setCurrentMedia(nullptr);
+         stop();
+     }
 
     /**
      * Verificação de execução de vídeos ou áudios.

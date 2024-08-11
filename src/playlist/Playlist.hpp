@@ -41,6 +41,8 @@ namespace QCinePlaylist {
 
         void dialogShow(bool b);
 
+        void isClear();
+
         void finish();
 
 #pragma clang diagnostic pop
@@ -56,6 +58,8 @@ namespace QCinePlaylist {
         void addPlaylist(const QStringList &media);
 
         void addFilesDialog(int result);
+
+        void clearPlaylist();
 
     private:
         void isFirst(bool b) { first = b; }
