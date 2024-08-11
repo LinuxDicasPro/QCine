@@ -19,8 +19,10 @@ namespace QCineMediaPlayerInterface {
         virtual void Pause() = 0;
         virtual void Stop() = 0;
         virtual void setSeek(int i) = 0;
-//        virtual void setVolume(int i) = 0;
-//        virtual void setMute(bool b) = 0;
+        virtual void setVolume(int i) = 0;
+        virtual void setMute(bool b) = 0;
+        virtual int Volume() = 0;
+        virtual bool Muted() = 0;
         virtual QWidget *getVideo() = 0;
     };
 

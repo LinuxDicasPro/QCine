@@ -20,7 +20,6 @@
 #include <Effects.hpp>
 #include <FloatWidget.hpp>
 #include <Icon.hpp>
-#include <Player.hpp>
 #include <Playlist.hpp>
 #include <Settings.hpp>
 #include <SettingsManager.hpp>

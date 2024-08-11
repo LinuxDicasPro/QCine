@@ -11,6 +11,7 @@
 #include <SettingsManager.hpp>
 #include <Slider.hpp>
 #include <Style.hpp>
+#include <Player.hpp>
 
 namespace QCineControls {
 
@@ -18,7 +19,7 @@ namespace QCineControls {
         Q_OBJECT
 
     public:
-        explicit Controls();
+        explicit Controls(QCinePlayer::Player *pPlayer);
 
         QCineButtons::Buttons *playBtn() { return play; }
 
@@ -35,8 +36,6 @@ namespace QCineControls {
 #pragma ide diagnostic ignored "NotImplementedFunctions"
 
     Q_SIGNALS:
-        int valueChanged(int);
-
         void noEffect(bool b);
 
         void pressPlay();
@@ -56,10 +55,16 @@ namespace QCineControls {
 
         void paintEvent(QPaintEvent* event) override;
 
+    private Q_SLOTS:
+        void changeMute();
+
+        void changeVolume(int i);
+
     private:
         QCineSettingsManager::SettingsManager *settingsManager{};
-        QCineButtons::Buttons *play{};
+        QCineButtons::Buttons *play{}, *volume{};
         QCineDebug::Debug *debug{};
+        QCinePlayer::Player *player{};
         QCineSlider::Slider *slider{};
         QVBoxLayout *lslider{}, *mainlayout{};
         QHBoxLayout *controls{};

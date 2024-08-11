@@ -32,7 +32,11 @@ namespace QCineIcon {
         Close = 12,
         Audio = 13,
         Video = 14,
-        ItemPlay = 15
+        ItemPlay = 15,
+        VolumeUp = 16,
+        VolumeDown = 17,
+        VolumeOff = 18,
+        NoSound = 19
     };
 
     class Icon : public QObject {

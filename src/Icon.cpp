@@ -26,7 +26,11 @@ namespace QCineIcon {
                 QVariantList {"close", QStyle::SP_DialogCloseButton},
                 QVariantList {"audio", QStyle::SP_MediaPlay},
                 QVariantList {"video", QStyle::SP_MediaPlay},
-                QVariantList {"itemplay", QStyle::SP_MediaPlay}
+                QVariantList {"itemplay", QStyle::SP_MediaPlay},
+                QVariantList {"volume_up", QStyle::SP_MediaVolume},
+                QVariantList {"volume_down", QStyle::SP_MediaVolume},
+                QVariantList {"volume_off", QStyle::SP_MediaVolumeMuted},
+                QVariantList {"no_sound", QStyle::SP_MediaVolumeMuted}
         };
     }
 

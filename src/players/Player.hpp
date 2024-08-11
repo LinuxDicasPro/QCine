@@ -35,6 +35,14 @@ namespace QCinePlayer {
 
         QWidget *widget() { return player->getVideo(); }
 
+        void setMute(bool b) { player->setMute(b); }
+
+        void setVolume(int i) { player->setVolume(i); }
+
+        bool isMuted() { return player->Muted(); }
+
+        int volume() { return player->Volume(); }
+
         void play(const QString &str = nullptr);
 
         void pause();

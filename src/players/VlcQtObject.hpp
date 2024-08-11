@@ -6,6 +6,7 @@
 #include <VideoInterface.hpp>
 #include <MediaPlayerInterface.hpp>
 
+#include <core/Audio.h>
 #include <core/Common.h>
 #include <core/Instance.h>
 #include <core/Media.h>
@@ -30,6 +31,14 @@ namespace QCineVlcQtObject {
         void Stop() override { player->stop(); }
 
         void setSeek(int i) override { player->setTime(i); }
+
+        void setMute(bool b) override { audio->setMute(b); }
+
+        void setVolume(int i) override { audio->setVolume(i); }
+
+        bool Muted() override { return audio->getMute(); }
+
+        int Volume() override { return audio->volume(); }
 
 //            auto t = player->time();
 //            player->stop();
@@ -64,6 +73,7 @@ namespace QCineVlcQtObject {
         void initPlayer();
 
         QCineVideoInterface::VlcVideo *video{};
+        VlcAudio *audio{};
         VlcInstance *instance{};
         VlcMediaPlayer *player{};
         QStringList args{};

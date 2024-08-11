@@ -30,6 +30,14 @@ namespace QCineMediaPlayerObject {
 
         void setSeek(int i) override { player->setPosition((qint64)i); }
 
+        void setMute(bool b) override { audio->setMuted(b); }
+
+        void setVolume(int i) override { audio->setVolume((float)i); }
+
+        bool Muted() override { return audio->isMuted(); }
+
+        int Volume() override { return (int)audio->volume(); }
+
         QWidget *getVideo() override { return video; }
 
 #pragma clang diagnostic push

@@ -32,22 +32,19 @@ namespace QCine {
         checkMouse = new QCineCheckMouse::CheckMouse();
         connect(checkMouse, &QCineCheckMouse::CheckMouse::movingMouse, effects, &QCineEffects::Effects::showEffect);
 
+        /** Reprodutor multimídia */
+        player = new QCinePlayer::Player();
+        connect(player, &QCinePlayer::Player::checkVideo, this, &QCine::changeStack);
+        connect(player, &QCinePlayer::Player::endMedia, this, &QCine::changeEndMedia);
+
         /** Controles de multimídia */
-        controls = new QCineControls::Controls();
+        controls = new QCineControls::Controls(player);
         widgetsControl->setFixedHeight(controls->height());
         connect(controls, &QCineControls::Controls::noEffect, this, &QCine::changeControls);
         connect(controls, &QCineControls::Controls::pressPlay, this, &QCine::changePlayPause);
         connect(controls, &QCineControls::Controls::pressStop, this, &QCine::stop);
         connect(controls, &QCineControls::Controls::pressNext, this, &QCine::next);
         connect(controls, &QCineControls::Controls::pressPrevious, this, &QCine::previous);
-
-        /** Reprodutor multimídia */
-        player = new QCinePlayer::Player();
-        connect(player, &QCinePlayer::Player::checkVideo, this, &QCine::changeStack);
-        connect(player, &QCinePlayer::Player::endMedia, this, &QCine::changeEndMedia);
-        connect(player, &QCinePlayer::Player::durationChange, controls, &QCineControls::Controls::sliderDuration);
-        connect(player, &QCinePlayer::Player::positionChange, controls, &QCineControls::Controls::sliderPosition);
-        connect(controls, &QCineControls::Controls::valueChanged, player, &QCinePlayer::Player::setPosition);
 
         /** Diálogo de configurações */
         settings = new QCineSettings::Settings();
@@ -194,10 +191,10 @@ namespace QCine {
      * ajuste do botão play/pause.
      */
     void QCine::changePlayPause() {
-        if (!player->isMedia())
+        if (not player->isMedia())
             return;
 
-        if (player->isPlaying() && !player->isPausing()) {
+        if (player->isPlaying() and not player->isPausing()) {
             player->pause();
             controls->playBtn()->btn(QCineIcon::Play);
             return;
@@ -231,6 +228,8 @@ namespace QCine {
         if (!player->isPlaying())
             return;
 
+        controls->sliderPosition(0);
+        controls->sliderEnabled(false);
         play(playlist->model()->indexOfNext(player->currentMedia()));
     }
 
@@ -241,6 +240,8 @@ namespace QCine {
         if (!player->isPlaying())
             return;
 
+        controls->sliderPosition(0);
+        controls->sliderEnabled(false);
         play(playlist->model()->indexOfPrevious(player->currentMedia()));
     }
 
@@ -415,8 +416,10 @@ namespace QCine {
      */
     void QCine::changeFullscreen() {
         if (this->isFullScreen()) {
-            if (settingsManager->windowMaximize()) this->showMaximized();
-            else this->showNormal();
+            if (settingsManager->windowMaximize())
+                this->showMaximized();
+            else
+                this->showNormal();
         } else {
             this->showFullScreen();
         }
@@ -545,14 +548,14 @@ namespace QCine {
      * É um filtro de eventos para o espaçamento da playlist e o handle do qsplitter.
      */
     bool QCine::eventFilter(QObject *obj, QEvent *event) {
-        if (dynamic_cast<QSplitterHandle*>(obj) && event->type() == QEvent::Enter) { // handle so QSplitter
+        if (dynamic_cast<QSplitterHandle*>(obj) and event->type() == QEvent::Enter) { // handle so QSplitter
             isSplit(true);
             checkMouse->noMouseCheck(true);
 
             if (!effectp->isShow())
                 effectp->showEffect(true);
 
-        } else if (dynamic_cast<QWidget*>(obj) && event->type() == QEvent::Enter) { // Widget de Espaçamento
+        } else if (dynamic_cast<QWidget*>(obj) and event->type() == QEvent::Enter) { // Widget de Espaçamento
             checkMouse->noMouseCheck(false);
             clickMapper->isBlockClick(false);
 

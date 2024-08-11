@@ -32,6 +32,7 @@ namespace QCineVlcQtObject {
 
         instance = new VlcInstance(args, this);
         player = new VlcMediaPlayer(instance);
+        audio = new VlcAudio(player);
         player->setVideoWidget(video->widget());
         video->setMediaPlayer(player);
 
