@@ -31,27 +31,27 @@ namespace QCineStyle {
                 I(t.red()), I(t.green()), I(t.blue()), I(settingsManager->borderSize()));
     }
 
-     /**
-      * Estilização dos widgets dos controles de reprodução e playlist do programa.
-      * @param style - Conferir se é controle ou playlist.
-      * @return Estilo dos Controles e Playlist
-      */
+    /**
+     * Estilização dos widgets dos controles de reprodução e playlist do programa.
+     * @param style - Conferir se é controle ou playlist.
+     * @return Estilo dos Controles e Playlist
+     */
     QString Style::widgetStyle(Styles style) {
-         QString color{QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity)};
+        QString color{QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity)};
 
-         if (settingsManager->programTheme() == QCineSettingsManager::Gradient) {
-             if (style == QCineStyle::Controls)
-                 color = QString("rgb(%1, %2, %3)").arg(I(b.red()), I(b.green()), I(b.blue()));
-             else if (style == QCineStyle::Playlist)
-                 color = QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity);
-         }
+        if (settingsManager->programTheme() == QCineSettingsManager::Gradient) {
+            if (style == QCineStyle::Controls)
+                color = QString("rgb(%1, %2, %3)").arg(I(b.red()), I(b.green()), I(b.blue()));
+            else if (style == QCineStyle::Playlist)
+                color = QString("rgba(%1, %2, %3, %4)").arg(I(b.red()), I(b.green()), I(b.blue()), opacity);
+        }
 
-         if ((ColorStyle) settingsManager->colorTheme() == ColorStyle::Black) {
-             if (settingsManager->programTheme() == QCineSettingsManager::Gradient && style == QCineStyle::Controls)
-                 color = "black";
-             else
-                 color = QString("rgba(0, 0, 0, %1)").arg(opacity);
-         }
+        if ((ColorStyle) settingsManager->colorTheme() == ColorStyle::Black) {
+            if (settingsManager->programTheme() == QCineSettingsManager::Gradient && style == QCineStyle::Controls)
+                color = "black";
+            else
+                color = QString("rgba(0, 0, 0, %1)").arg(opacity);
+        }
 
         if (settingsManager->programTheme() == QCineSettingsManager::Gradient) {
             if (style == QCineStyle::Controls) {
@@ -140,21 +140,21 @@ namespace QCineStyle {
                            "}").arg(I(m.red()), I(m.green()), I(m.blue()), color, cborder);
         }
 
-       return QString("QMenu {"
-                      "    background-color: %7;"
-                      "    border: 1px solid rgba(%4, %5, %6, %8);"
-                      "}"
-                      "QMenu::separator {}"
-                      "QMenu::item {"
-                      "    padding: 6px 12px;"
-                      "}"
-                      "QMenu::item:selected {"
-                      "    background-color: rgba(%1, %2, %3, 150);"
-                      "}"
-                      "QMenu::icon {"
-                      "    margin-right: 12px;"
-                      "}").arg(I(m.red()), I(m.green()), I(m.blue()),
-                               I(l.red()), I(l.green()), I(l.blue()), color, opacity);
+        return QString("QMenu {"
+                       "    background-color: %7;"
+                       "    border: 1px solid rgba(%4, %5, %6, %8);"
+                       "}"
+                       "QMenu::separator {}"
+                       "QMenu::item {"
+                       "    padding: 6px 12px;"
+                       "}"
+                       "QMenu::item:selected {"
+                       "    background-color: rgba(%1, %2, %3, 150);"
+                       "}"
+                       "QMenu::icon {"
+                       "    margin-right: 12px;"
+                       "}").arg(I(m.red()), I(m.green()), I(m.blue()),
+                                I(l.red()), I(l.green()), I(l.blue()), color, opacity);
     }
 
     /**
@@ -274,7 +274,7 @@ namespace QCineStyle {
     QMargins Style::internalMarginStyle(Styles style) {
         int i{settingsManager->programTheme() == QCineSettingsManager::Gradient ? roundMargin : defMargin};
         int s{settingsManager->programTheme() == QCineSettingsManager::Gradient &&
-                style == Styles::NoAjust ? roundMargin : defMargin};
+              style == Styles::NoAjust ? roundMargin : defMargin};
 
         return {s, i, i, i};
     }

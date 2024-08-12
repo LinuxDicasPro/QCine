@@ -9,7 +9,7 @@
 namespace QCineBackground {
 
     class Background : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Background();
@@ -25,8 +25,7 @@ namespace QCineBackground {
 
     private:
         QGridLayout *layout{};
-        QCineBackgroundTransition::BackgroundTransition *backgroundTransition{};
-        QCineBackgroundTransition::BackgroundTransition *logo{};
+        QCineBackgroundTransition::BackgroundTransition *backgroundTransition{}, *logo{};
     };
 
 } // QCineBackground

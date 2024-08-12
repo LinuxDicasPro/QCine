@@ -20,16 +20,13 @@
 #ifndef VLCQT_CONTROLAUDIO_H_
 #define VLCQT_CONTROLAUDIO_H_
 
-#include <QtCore/QList>
-#include <QtCore/QMap>
+#include <QAction>
+#include <QList>
+#include <QMap>
 
 #include <core/Enums.h>
 
-#include "SharedExportWidgets.h"
-
-#include <QAction>
 class QTimer;
-
 class VlcAudio;
 class VlcMediaPlayer;
 
@@ -41,7 +38,7 @@ class VlcMediaPlayer;
     This is one of VLC-Qt control classes.
     It provides audio tracks management.
 */
-class VLCQT_WIDGETS_EXPORT VlcControlAudio : public QObject {
+class VlcControlAudio : public QObject {
     Q_OBJECT
 public:
     /*!

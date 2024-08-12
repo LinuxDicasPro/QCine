@@ -17,7 +17,7 @@
 namespace QCinePlaylist {
 
     class Playlist : public QDialog {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Playlist();
@@ -68,15 +68,15 @@ namespace QCinePlaylist {
 
         [[nodiscard]] bool isFirst() const { return first; }
 
-        QHBoxLayout *changePlaylist{}, *buttons{};
-        QVBoxLayout *mainlayout{}, *listlayout{};
-
         QCineDebug::Debug *debug{};
         QCineFileDialog::FileDialog *fileDialog{};
         QCinePlaylistModel::PlaylistModel *playlistModel{};
         QCinePlaylistName::PlaylistName *playlistName{};
         QCineWorkerPlaylist::WorkerPlaylist *workerPlaylist{};
+        QHBoxLayout *changePlaylist{}, *buttons{};
+        QVBoxLayout *mainlayout{}, *listlayout{};
         QThread *thread{};
+
         bool first{false};
     };
 

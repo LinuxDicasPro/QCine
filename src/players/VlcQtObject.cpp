@@ -5,6 +5,7 @@
 #include "VlcQtObject.hpp"
 
 namespace QCineVlcQtObject {
+
     VlcQtObject::VlcQtObject() {
         video = new QCineVideoInterface::VlcVideo();
         initPlayer();

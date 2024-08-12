@@ -8,7 +8,7 @@
 namespace QCineLabel {
 
     class Label : public QLabel {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Label(const QString &l, bool b = false, int s = 0, bool i = false);

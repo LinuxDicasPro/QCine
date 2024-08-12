@@ -39,8 +39,8 @@ namespace QCineSettingsManager {
     }
 
     QRect SettingsManager::windowGeometry() {
-        return this->value("WindowGeometry",QRect(center().x(),center().y(),
-                                                  minSize().width(),minSize().height())).toRect();
+        return this->value("WindowGeometry", QRect(center().x(), center().y(),
+                                                   minSize().width(), minSize().height())).toRect();
     }
 
     void SettingsManager::splitterSizes(const QList<int> &list) {

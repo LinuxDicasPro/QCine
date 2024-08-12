@@ -15,7 +15,7 @@
 namespace QCineVlcQtObject {
 
     class VlcQtObject : public QObject, public QCineMediaPlayerInterface::MediaPlayerInterface {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit VlcQtObject();
@@ -63,9 +63,9 @@ namespace QCineVlcQtObject {
 #pragma clang diagnostic pop
 
     private Q_SLOTS:
-        void changeDuration(int i) { Q_EMIT durationChange((qint64)i); }
+        void changeDuration(int i) { Q_EMIT durationChange((qint64) i); }
 
-        void changePosition(int i) { Q_EMIT positionChange((qint64)i); }
+        void changePosition(int i) { Q_EMIT positionChange((qint64) i); }
 
         void changeEnd() { Q_EMIT endMedia(); }
 

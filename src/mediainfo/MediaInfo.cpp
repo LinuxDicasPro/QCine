@@ -61,8 +61,8 @@ namespace QCineMediaInfo {
         for (unsigned int i = 0; i < fmt_ctx->nb_streams; i++) {
             AVStream *stream = fmt_ctx->streams[i];
             AVCodecParameters *codec_params = stream->codecpar;
-            if (codec_params->codec_type == AVMEDIA_TYPE_VIDEO and info1.isEmpty()
-                and not(stream->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
+            if (codec_params->codec_type == AVMEDIA_TYPE_VIDEO and info1.isEmpty() and
+                not(stream->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
                 int w = codec_params->width;
                 int h = codec_params->height;
 

@@ -18,7 +18,7 @@ extern "C" {
 namespace QCinePlayer {
 
     class Player : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Player();

@@ -11,26 +11,26 @@ namespace QCineIcon {
         debug = new QCineDebug::Debug();
 
         iconList = {
-                QVariantList {"settings", QStyle::SP_ArrowRight},
-                QVariantList {"add", QStyle::SP_FileDialogNewFolder},
-                QVariantList {"remove", QStyle::SP_DialogCancelButton},
-                QVariantList {"previousplaylist", QStyle::SP_ArrowLeft},
-                QVariantList {"nextplaylist", QStyle::SP_ArrowRight},
-                QVariantList {"clearlist", QStyle::SP_DialogDiscardButton},
-                QVariantList {"play", QStyle::SP_MediaPlay},
-                QVariantList {"pause", QStyle::SP_MediaPause},
-                QVariantList {"addmenu", QStyle::SP_FileDialogNewFolder},
-                QVariantList {"stop", QStyle::SP_MediaStop},
-                QVariantList {"previous", QStyle::SP_MediaSeekBackward},
-                QVariantList {"next", QStyle::SP_MediaSeekForward},
-                QVariantList {"close", QStyle::SP_DialogCloseButton},
-                QVariantList {"audio", QStyle::SP_MediaPlay},
-                QVariantList {"video", QStyle::SP_MediaPlay},
-                QVariantList {"itemplay", QStyle::SP_MediaPlay},
-                QVariantList {"volume_up", QStyle::SP_MediaVolume},
-                QVariantList {"volume_down", QStyle::SP_MediaVolume},
-                QVariantList {"volume_off", QStyle::SP_MediaVolumeMuted},
-                QVariantList {"no_sound", QStyle::SP_MediaVolumeMuted}
+                QVariantList{"settings", QStyle::SP_ArrowRight},
+                QVariantList{"add", QStyle::SP_FileDialogNewFolder},
+                QVariantList{"remove", QStyle::SP_DialogCancelButton},
+                QVariantList{"previousplaylist", QStyle::SP_ArrowLeft},
+                QVariantList{"nextplaylist", QStyle::SP_ArrowRight},
+                QVariantList{"clearlist", QStyle::SP_DialogDiscardButton},
+                QVariantList{"play", QStyle::SP_MediaPlay},
+                QVariantList{"pause", QStyle::SP_MediaPause},
+                QVariantList{"addmenu", QStyle::SP_FileDialogNewFolder},
+                QVariantList{"stop", QStyle::SP_MediaStop},
+                QVariantList{"previous", QStyle::SP_MediaSeekBackward},
+                QVariantList{"next", QStyle::SP_MediaSeekForward},
+                QVariantList{"close", QStyle::SP_DialogCloseButton},
+                QVariantList{"audio", QStyle::SP_MediaPlay},
+                QVariantList{"video", QStyle::SP_MediaPlay},
+                QVariantList{"itemplay", QStyle::SP_MediaPlay},
+                QVariantList{"volume_up", QStyle::SP_MediaVolume},
+                QVariantList{"volume_down", QStyle::SP_MediaVolume},
+                QVariantList{"volume_off", QStyle::SP_MediaVolumeMuted},
+                QVariantList{"no_sound", QStyle::SP_MediaVolumeMuted}
         };
     }
 
@@ -42,7 +42,7 @@ namespace QCineIcon {
     QString Icon::selectIcon(Icons icon) {
         auto local = QCineDefaultPath::DefaultPath().defalutPath("icons");
 
-        if (!local.isEmpty()) {
+        if (not local.isEmpty()) {
             QString ico = QString("%1/%2.svg").arg(local, iconList.at(int(icon)).toList().at(0).toString());
 
             if (QFileInfo::exists(ico)) {
@@ -91,7 +91,7 @@ namespace QCineIcon {
 
         if (ico.isEmpty())
             return QApplication::style()->standardIcon(
-                    iconList.at(int(icon)).toList().at(1).value<QStyle::StandardPixmap>());
+                    iconList.at((int) icon).toList().at(1).value<QStyle::StandardPixmap>());
 
         return contrastIcon(QIcon(ico), color);
     }

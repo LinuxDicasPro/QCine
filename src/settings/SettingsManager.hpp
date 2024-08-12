@@ -29,7 +29,7 @@ namespace QCineSettingsManager {
     };
 
     class SettingsManager : public QSettings {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit SettingsManager(QWidget *window = nullptr);

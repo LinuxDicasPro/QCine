@@ -11,7 +11,7 @@
 namespace QCineEffects {
 
     class Effects : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Effects(QWidget *parent);
@@ -21,7 +21,6 @@ namespace QCineEffects {
         [[nodiscard]] bool isShow() const { return checkshow; }
 
     public Q_SLOTS:
-
         void changeEffectDuration(int i) { animation->setDuration(i); }
 
         void setDisableEffect(bool b) { animation->setDuration(b ? 0 : settingsManager->changeEffect()); }

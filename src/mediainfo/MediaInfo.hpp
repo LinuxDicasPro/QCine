@@ -1,10 +1,10 @@
 #ifndef QCINE_MEDIAINFO_HPP
 #define QCINE_MEDIAINFO_HPP
 
+#include <QFileInfo>
 #include <QMediaPlayer>
 #include <QMediaMetaData>
 #include <QObject>
-#include <QFileInfo>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -13,7 +13,7 @@ extern "C" {
 namespace QCineMediaInfo {
 
     class MediaInfo : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit MediaInfo();

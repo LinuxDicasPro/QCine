@@ -46,7 +46,6 @@ namespace QCineDebug {
      * @param args - Argumentos extras para o debug, não importa a ordem.
      */
     void Debug::msg(const QString &str, const QString &name, const QVariantList &args) {
-
         QString parm{}, p{}, fcolor{}, scolor{};
         int i{0};
 

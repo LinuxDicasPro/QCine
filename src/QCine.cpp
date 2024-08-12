@@ -54,11 +54,15 @@ namespace QCine {
         connect(settings, &QCineSettings::Settings::enterBox, this, &QCine::statusComboBox);
         connect(settings, &QCineSettings::Settings::changeEngine, this, &QCine::changeEngine);
         connect(settings, &QCineSettings::Settings::disableEffect, effects, &QCineEffects::Effects::setDisableEffect);
-        connect(settings, &QCineSettings::Settings::changeEffect, effects, &QCineEffects::Effects::changeEffectDuration);
-        connect(settings, &QCineSettings::Settings::disableEffectBG, background, &QCineBackground::Background::disableAnimation);
-        connect(settings, &QCineSettings::Settings::changeEffectBG, background, &QCineBackground::Background::transitionDuration);
-        connect(settings, &QCineSettings::Settings::changeHideEffect, checkMouse, &QCineCheckMouse::CheckMouse::setHideTimer);
-        connect(settings, &QCineSettings::Settings::dialogShow,this, &QCine::changeSettings);
+        connect(settings, &QCineSettings::Settings::changeEffect, effects,
+                &QCineEffects::Effects::changeEffectDuration);
+        connect(settings, &QCineSettings::Settings::disableEffectBG, background,
+                &QCineBackground::Background::disableAnimation);
+        connect(settings, &QCineSettings::Settings::changeEffectBG, background,
+                &QCineBackground::Background::transitionDuration);
+        connect(settings, &QCineSettings::Settings::changeHideEffect, checkMouse,
+                &QCineCheckMouse::CheckMouse::setHideTimer);
+        connect(settings, &QCineSettings::Settings::dialogShow, this, &QCine::changeSettings);
         connect(settings, &QCineSettings::Settings::changeBackground, [&]() { background->changeBackground(); });
 
         /** Playlist do programa */
@@ -69,7 +73,7 @@ namespace QCine {
         connect(playlist, &QCinePlaylist::Playlist::noEffect, this, &QCine::changeplaylist);
         connect(playlist, &QCinePlaylist::Playlist::enterBox, this, &QCine::statusComboBox);
         connect(playlist, &QCinePlaylist::Playlist::dialogShow, this, &QCine::changeFileDialog);
-        connect(playlist, &QCinePlaylist::Playlist::finish, [&](){ clickMapper->isBlockClick(false); });
+        connect(playlist, &QCinePlaylist::Playlist::finish, [&]() { clickMapper->isBlockClick(false); });
 
         /** Ajustes da playlist */
         auto wPlaylist = new QWidget();
@@ -93,7 +97,8 @@ namespace QCine {
         /** Efeito do splitter */
         effectp = new QCineEffects::Effects(splitter);
         connect(settings, &QCineSettings::Settings::disableEffect, effectp, &QCineEffects::Effects::setDisableEffect);
-        connect(settings, &QCineSettings::Settings::changeEffect, effectp, &QCineEffects::Effects::changeEffectDuration);
+        connect(settings, &QCineSettings::Settings::changeEffect, effectp,
+                &QCineEffects::Effects::changeEffectDuration);
 
         /** Layout intermediário para facilitar o mapeamento do mouse e os efeitos */
         auto *wcontrols = new QVBoxLayout(widgetsControl);
@@ -106,8 +111,10 @@ namespace QCine {
         floatWidget->move(this->pos());
         connect(floatWidget, &QCineFloatWidget::FloatWidget::contextMenu, this, &QCine::contextMenu);
         connect(floatWidget, &QCineFloatWidget::FloatWidget::leave, this, &QCine::changeLeave);
-        connect(floatWidget, &QCineFloatWidget::FloatWidget::release, clickMapper, &QCineClickMapper::ClickMapper::mapClicks);
-        connect(floatWidget, &QCineFloatWidget::FloatWidget::mousePos, checkMouse, &QCineCheckMouse::CheckMouse::mousePos);
+        connect(floatWidget, &QCineFloatWidget::FloatWidget::release, clickMapper,
+                &QCineClickMapper::ClickMapper::mapClicks);
+        connect(floatWidget, &QCineFloatWidget::FloatWidget::mousePos, checkMouse,
+                &QCineCheckMouse::CheckMouse::mousePos);
 
         /** Layout Horizontal das configurações */
         auto hsettings = new QHBoxLayout();
@@ -148,7 +155,7 @@ namespace QCine {
         auto *shortcut = new QShortcut(QKeySequence(Qt::AltModifier | Qt::Key_S), this);
         connect(shortcut, &QShortcut::activated, settings, &QCineSettings::Settings::show);
         auto *shortcut2 = new QShortcut(QKeySequence(Qt::ControlModifier | Qt::Key_O), this);
-        connect(shortcut2, &QShortcut::activated, [&](){ playlist->addFiles(); });
+        connect(shortcut2, &QShortcut::activated, [&]() { playlist->addFiles(); });
 
         floatWidget->show();
         settings->close();
@@ -172,7 +179,7 @@ namespace QCine {
     void QCine::play(const QString &file) {
         playlist->model()->clearSelection();
 
-        if (!player->currentMedia().isEmpty())
+        if (not player->currentMedia().isEmpty())
             playlist->model()->getItem(player->currentMedia())->unselectColor();
 
         player->play(file);
@@ -180,7 +187,7 @@ namespace QCine {
         controls->sliderEnabled(true);
         this->setWindowTitle(playlist->model()->getName(player->currentMedia()));
 
-        if (!player->currentMedia().isEmpty()) {
+        if (not player->currentMedia().isEmpty()) {
             playlist->model()->getItem(player->currentMedia())->selectColor();
             playlist->model()->setCurrentRow(playlist->model()->indexOf(player->currentMedia()));
         }
@@ -212,7 +219,7 @@ namespace QCine {
             stackedWidget->setCurrentWidget(background);
             playlist->model()->clearSelection();
 
-            if (!player->currentMedia().isEmpty())
+            if (not player->currentMedia().isEmpty())
                 playlist->model()->getItem(player->currentMedia())->unselectColor();
         }
         controls->playBtn()->btn(QCineIcon::Play);
@@ -225,7 +232,7 @@ namespace QCine {
      * Pulando para a próxima mídia.
      */
     void QCine::next() {
-        if (!player->isPlaying())
+        if (not player->isPlaying())
             return;
 
         controls->sliderPosition(0);
@@ -237,7 +244,7 @@ namespace QCine {
      * Pulando para a mídia anterior.
      */
     void QCine::previous() {
-        if (!player->isPlaying())
+        if (not player->isPlaying())
             return;
 
         controls->sliderPosition(0);
@@ -261,10 +268,10 @@ namespace QCine {
     /**
      * Executando as ações após a limpeza da playlist.
      */
-     void QCine::playlistIsCleaned() {
-         player->setCurrentMedia(nullptr);
-         stop();
-     }
+    void QCine::playlistIsCleaned() {
+        player->setCurrentMedia(nullptr);
+        stop();
+    }
 
     /**
      * Verificação de execução de vídeos ou áudios.
@@ -299,7 +306,7 @@ namespace QCine {
         isControlShow(b);
 
         /** Correção de bug */
-        if (!effects->isShow()) {
+        if (not effects->isShow()) {
             checkMouse->isAlready(true);
             effects->showEffect(true);
         }
@@ -314,20 +321,20 @@ namespace QCine {
         if (isNoLeave())
             return;
 
-        if (!b && isSplit()) {
+        if (not b and isSplit()) {
             isSplit(false);
         } else {
             checkMouse->noMouseCheck(b);
             clickMapper->isBlockClick(b);
         }
 
-        if (!effectp->isShow())
+        if (not effectp->isShow())
             effectp->showEffect(b);
 
         isSplit(false); // Controle de Erro
 
         /** Correção de bug */
-        if (!effects->isShow()) {
+        if (not effects->isShow()) {
             checkMouse->isAlready(true);
             effects->showEffect(true);
         }
@@ -362,10 +369,10 @@ namespace QCine {
      */
     void QCine::statusComboBox(bool b) {
         isNoLeave(b);
-        if (!b) {
+        if (not b) {
             auto m = this->mapFromGlobal(QCursor::pos());
             auto p = this->size();
-            if (m.x() < 0 || m.y() < 0 || m.x() > p.width() || m.y() > p.height())
+            if (m.x() < 0 or m.y() < 0 or m.x() > p.width() or m.y() > p.height())
                 floatWidget->hide();
         }
     }
@@ -457,8 +464,8 @@ namespace QCine {
         menu->setWindowFlag(Qt::FramelessWindowHint, true);
         menu->setAttribute(Qt::WA_TranslucentBackground, true);
         menu->setStyleSheet(QCineStyle::Style().contextMenuStyle());
-        connect(menu, &QMenu::aboutToShow, [&](){ checkMouse->isContextMenu(true); });
-        connect(menu, &QMenu::aboutToHide, [&](){ checkMouse->isContextMenu(false); });
+        connect(menu, &QMenu::aboutToShow, [&]() { checkMouse->isContextMenu(true); });
+        connect(menu, &QMenu::aboutToHide, [&]() { checkMouse->isContextMenu(false); });
 
         /** Adicionar arquivos */
         QAction *actFiles = menu->addAction(tr("Open Files"));
@@ -521,7 +528,7 @@ namespace QCine {
         debug->msg("Fechando o programa", "QCine");
         stop();
 
-        if (!this->isMaximized()) // Se tiver maximizado dá zica
+        if (not this->isMaximized()) // Se tiver maximizado dá zica
             settingsManager->windowGeometry(this->geometry());
 
         settingsManager->splitterSizes(splitter->sizes());
@@ -548,14 +555,14 @@ namespace QCine {
      * É um filtro de eventos para o espaçamento da playlist e o handle do qsplitter.
      */
     bool QCine::eventFilter(QObject *obj, QEvent *event) {
-        if (dynamic_cast<QSplitterHandle*>(obj) and event->type() == QEvent::Enter) { // handle so QSplitter
+        if (dynamic_cast<QSplitterHandle *>(obj) and event->type() == QEvent::Enter) { // handle so QSplitter
             isSplit(true);
             checkMouse->noMouseCheck(true);
 
             if (!effectp->isShow())
                 effectp->showEffect(true);
 
-        } else if (dynamic_cast<QWidget*>(obj) and event->type() == QEvent::Enter) { // Widget de Espaçamento
+        } else if (dynamic_cast<QWidget *>(obj) and event->type() == QEvent::Enter) { // Widget de Espaçamento
             checkMouse->noMouseCheck(false);
             clickMapper->isBlockClick(false);
 

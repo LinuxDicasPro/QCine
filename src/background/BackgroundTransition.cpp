@@ -7,9 +7,8 @@
 
 namespace QCineBackgroundTransition {
 
-    BackgroundTransition::BackgroundTransition(bool noBlur,
-                                               QSize screenSize,
-                                               const QString &str) :screenSize(screenSize) {
+    BackgroundTransition::BackgroundTransition(bool noBlur, QSize screenSize,
+                                               const QString &str) : screenSize(screenSize) {
         /** Definições */
         this->setRenderHint(QPainter::Antialiasing);
         this->setRenderHint(QPainter::SmoothPixmapTransform);
@@ -27,7 +26,7 @@ namespace QCineBackgroundTransition {
         settingsManager = new QCineSettingsManager::SettingsManager();
 
         /** Desfoco para a classe */
-        if (!noBlur) {
+        if (not noBlur) {
             blurEffect = new QGraphicsBlurEffect();
             blurEffect->setBlurRadius(settingsManager->blurBackground());
             viewport()->setGraphicsEffect(blurEffect);
@@ -51,10 +50,10 @@ namespace QCineBackgroundTransition {
         this->setScene(scene);
 
         /** Setando imagem ao iniciar o construtor */
-        if (!str.isEmpty())
-            itemPixmap(pixmap1, item1, false, str);
-        else
+        if (str.isEmpty())
             itemPixmap(pixmap1, item1, settingsManager->programBackground() == QCineSettingsManager::Random);
+        else
+            itemPixmap(pixmap1, item1, false, str);
 
         /** Animação para o efeito */
         animation = new QPropertyAnimation(opacityEffect, "opacity");
@@ -119,7 +118,7 @@ namespace QCineBackgroundTransition {
         if (animation->state() == QAbstractAnimation::Stopped)
             return; // Controle de erro;
 
-        if (!isTransition()) {
+        if (not isTransition()) {
             isTransition(true);
             debug->msg("Plano de fundo em transição", "BackgroundTransition");
         }

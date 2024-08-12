@@ -11,7 +11,7 @@
 namespace QCineDefaultPath {
 
     class DefaultPath : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit DefaultPath();

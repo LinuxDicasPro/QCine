@@ -31,13 +31,13 @@ namespace QCineEnvironmentVariable {
 
         /** Preenchendo o layout */
         int i{1}, j{0};
-        for (const auto &lst : list) {
+        for (const auto &lst: list) {
 
             auto ck = new QCheckBox(lst);
             if (settings->value(ck->text(), checkFalse).toInt() == checkTrue)
                 ck->setChecked(true);
 
-            connect(ck, &QCheckBox::stateChanged, this, [&, ck](int i){
+            connect(ck, &QCheckBox::stateChanged, this, [&, ck](int i) {
                 settings->setValue(ck->text(), i);
             });
 
@@ -104,7 +104,7 @@ namespace QCineEnvironmentVariable {
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 4, 0)
         QString str = s.value("QT_MEDIA_BACKEND", "auto").toString();
-        
+
         if (str != "auto")
             qputenv("QT_MEDIA_BACKEND", str.toStdString());
 
@@ -134,20 +134,20 @@ namespace QCineEnvironmentVariable {
             qputenv("__GL_SYNC_TO_VBLANK", "0"); // melhora o desempenho, mas pode resultar em tearing
 
         if (s.value("__GL_MaxFramesAllowed=1").toInt() == checkTrue)
-            qputenv("__GL_MaxFramesAllowed","1"); // pode causar redução significativa na taxa de quadros da aplicação
+            qputenv("__GL_MaxFramesAllowed", "1"); // pode causar redução significativa na taxa de quadros da aplicação
 
         if (checkNvidiaGpu()) {
             if (s.value("__NV_PRIME_RENDER_OFFLOAD=1").toInt() == checkTrue)
-                qputenv("__NV_PRIME_RENDER_OFFLOAD","1");
+                qputenv("__NV_PRIME_RENDER_OFFLOAD", "1");
 
             if (s.value("__NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0").toInt() == checkTrue)
-                qputenv("__NV_PRIME_RENDER_OFFLOAD_PROVIDER","NVIDIA-G0");
+                qputenv("__NV_PRIME_RENDER_OFFLOAD_PROVIDER", "NVIDIA-G0");
 
             if (s.value("__GLX_VENDOR_LIBRARY_NAME=nvidia").toInt() == checkTrue)
-                qputenv("__GLX_VENDOR_LIBRARY_NAME","nvidia");
+                qputenv("__GLX_VENDOR_LIBRARY_NAME", "nvidia");
 
             if (s.value("EGL_NV_triple_buffer=1").toInt() == checkTrue)
-                qputenv("EGL_NV_triple_buffer","1");
+                qputenv("EGL_NV_triple_buffer", "1");
         }
     }
 
@@ -164,7 +164,7 @@ namespace QCineEnvironmentVariable {
      */
     bool EnvironmentVariable::checkNvidiaGpu() {
         QFile file("/proc/driver/nvidia/version");
-        if (file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        if (file.exists() and file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
             QString content = in.readAll();
             file.close();

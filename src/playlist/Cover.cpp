@@ -10,7 +10,6 @@ namespace QCineCover {
 #define imgsize 96
 
     Cover::Cover(const QPixmap &p) : pxm(p) {
-
         label = new QLabel();
         label->setAlignment(Qt::AlignCenter);
         label->setFixedSize(imgsize, imgsize);

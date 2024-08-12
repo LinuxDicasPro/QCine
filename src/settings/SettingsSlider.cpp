@@ -42,7 +42,7 @@ namespace QCineSettingsSlider {
         layout->addWidget(slider);
         layout->addWidget(labelValue);
 
-        if (!unit.isEmpty()) {
+        if (not unit.isEmpty()) {
             l = new QLabel(unit);
             if (size == 0)
                 l->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);

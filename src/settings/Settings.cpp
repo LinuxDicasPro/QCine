@@ -37,18 +37,18 @@ namespace QCineSettings {
         checkColor->setContentsMargins(QMargins());
 
         QList<QCineStyle::ColorStyle> i = {QCineStyle::SystemColor, QCineStyle::Black};
-        auto cr = (QCineStyle::ColorStyle)settingsManager->colorTheme();
+        auto cr = (QCineStyle::ColorStyle) settingsManager->colorTheme();
         int n{1};
 
         /** Populando o layout com várias opções de cores */
-        for (QCineStyle::ColorStyle c : i) {
+        for (QCineStyle::ColorStyle c: i) {
 
             auto cl = new QRadioButton();
             cl->setFixedSize(defRadiusColor, defRadiusColor);
             cl->setStyleSheet(QCineStyle::Style().styleRadiusColor(c));
             cl->setProperty("id", n);
             cl->setChecked((QCineStyle::ColorStyle) cr == c);
-            connect(cl, &QRadioButton::toggled, [&, cl](bool checked){ changeColorTheme(checked, cl); });
+            connect(cl, &QRadioButton::toggled, [&, cl](bool checked) { changeColorTheme(checked, cl); });
 
             checkColor->addWidget(cl);
             n++;
@@ -61,7 +61,7 @@ namespace QCineSettings {
         includedef->setVisible(bgtheme == QCineSettingsManager::Random);
 
         gradck = new QCheckBox(tr("Double Gradient Strength"));
-        connect(gradck, &QCheckBox::stateChanged, [&](int i){ settingsManager->doubleGradient(i); });
+        connect(gradck, &QCheckBox::stateChanged, [&](int i) { settingsManager->doubleGradient(i); });
 
         if (settingsManager->doubleGradient() == checkTrue) gradck->setChecked(true);
         gradck->setVisible(theme == QCineSettingsManager::Gradient);
@@ -78,13 +78,15 @@ namespace QCineSettings {
         auto effectduration = new QCineSettingsSlider::SettingsSlider(tr("Effect Duration"), "ms", 100);
         effectduration->setValues(effectTimeMin, effectTimeMax);
         effectduration->setValue(settingsManager->changeEffect());
-        connect(effectduration, &QCineSettingsSlider::SettingsSlider::valueChanged, this, &Settings::changeEffectDuration);
+        connect(effectduration, &QCineSettingsSlider::SettingsSlider::valueChanged, this,
+                &Settings::changeEffectDuration);
 
         /** Slider para selecionar a duração da transição do background */
         auto effectdurationbg = new QCineSettingsSlider::SettingsSlider(tr("Transition Duration"), "ms", 100);
         effectdurationbg->setValues(effectTimeMinBG, effectTimeMaxBG);
         effectdurationbg->setValue(settingsManager->changeEffectBackground());
-        connect(effectdurationbg, &QCineSettingsSlider::SettingsSlider::valueChanged, this, &Settings::changeEffectDurationBG);
+        connect(effectdurationbg, &QCineSettingsSlider::SettingsSlider::valueChanged, this,
+                &Settings::changeEffectDurationBG);
 
         /** Slider para selecionar o tempo para ocultar os controles */
         auto effecthide = new QCineSettingsSlider::SettingsSlider(tr("Hide Time"), "ms", 100);
@@ -131,8 +133,8 @@ namespace QCineSettings {
         auto *engineCombo = new QCineComboBox::ComboBox();
         engineCombo->addItems(settingsManager->defProgramEngine());
         engineCombo->setCurrentIndex(
-            settingsManager->videoEngine() > settingsManager->defProgramEngine().size() - 1 ? 0 :
-            settingsManager->videoEngine()
+                settingsManager->videoEngine() > settingsManager->defProgramEngine().size() - 1 ? 0 :
+                settingsManager->videoEngine()
         ); // Correção caso uma engine seja retirada
 
         connect(engineCombo, &QCineComboBox::ComboBox::enterBox, this, &Settings::enterBox);
@@ -210,7 +212,7 @@ namespace QCineSettings {
         tabWidget->addTab(env, tr("Environment Variables"));
 
         /** Layout principal */
-        layout= new QVBoxLayout(this);
+        layout = new QVBoxLayout(this);
         layout->addLayout(clayout);
         layout->addWidget(tabWidget);
     }
@@ -229,8 +231,8 @@ namespace QCineSettings {
      * @param i - Valor numérico para selecionar o tema.
      */
     void Settings::handleComboBoxChange(int i) {
-        borderSize->setVisible((QCineSettingsManager::Theme)i > QCineSettingsManager::Default);
-        gradck->setVisible((QCineSettingsManager::Theme)i == QCineSettingsManager::Gradient);
+        borderSize->setVisible((QCineSettingsManager::Theme) i > QCineSettingsManager::Default);
+        gradck->setVisible((QCineSettingsManager::Theme) i == QCineSettingsManager::Gradient);
         settingsManager->programTheme(i);
         Q_EMIT changeTheme();
     }
@@ -240,7 +242,7 @@ namespace QCineSettings {
      * @param i - Valor numérico para selecionar o tema.
      */
     void Settings::handleComboBoxBg(int i) {
-        includedef->setVisible((QCineSettingsManager::Theme)i == QCineSettingsManager::Random);
+        includedef->setVisible((QCineSettingsManager::Theme) i == QCineSettingsManager::Random);
         settingsManager->programBackground(i);
         Q_EMIT changeBackground();
     }
@@ -288,14 +290,6 @@ namespace QCineSettings {
     void Settings::changeEnableEffectBG(int i) {
         settingsManager->statusEffectBackground(i);
         Q_EMIT disableEffectBG(i == checkTrue);
-    }
-
-    /**
-     * Ativando ou desativando os efeitos de transição do plano de fundo do programa.
-     * @param i - Valor para alteração.
-     */
-    void Settings::useDefaultBackground(int i) {
-        settingsManager->useDefaultBackground(i);
     }
 
     /**

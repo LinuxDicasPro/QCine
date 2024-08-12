@@ -19,13 +19,11 @@
 #ifndef VLCQT_WIDGETVIDEO_H_
 #define VLCQT_WIDGETVIDEO_H_
 
-#include <QtCore/QTimer>
-#include <QtWidgets/QFrame>
+#include <QTimer>
+#include <QFrame>
 
 #include <core/Enums.h>
 #include <core/VideoDelegate.h>
-
-#include "SharedExportWidgets.h"
 
 class VlcMediaPlayer;
 
@@ -42,7 +40,7 @@ class VlcMediaPlayer;
     This is one of VLC-Qt GUI classes.
     It provides video display and mouse control.
 */
-class VLCQT_WIDGETS_EXPORT VlcWidgetVideo : public QFrame, public VlcVideoDelegate {
+class VlcWidgetVideo : public QFrame, public VlcVideoDelegate {
     Q_OBJECT
 public:
     /*!

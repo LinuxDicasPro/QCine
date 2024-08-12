@@ -19,14 +19,9 @@
 #ifndef VLCQT_CONFIG_H_
 #define VLCQT_CONFIG_H_
 
-// Version
-#define LIBVLCQT_VERSION ""
-#define LIBVLCQT_VERSION_VCS ""
-
 #define LIBVLCQT_VERSION_MAJOR 2024
 #define LIBVLCQT_VERSION_MINOR 8
 
-// libVLC this library is built with
 #define LIBVLC_VERSION 0x030012
 
 #endif // VLCQT_CONFIG_H_

@@ -40,7 +40,7 @@ namespace QCineIcon {
     };
 
     class Icon : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Icon(int size = defIconSize, int max = defMax);

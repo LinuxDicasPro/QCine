@@ -61,7 +61,7 @@ namespace QCinePlaylistModel {
         mediaFileList.append(mediaFile);
 
         auto itemW = new QCinePlaylistItem::PlaylistItem(mediaFile);
-        connect(itemW, &QCinePlaylistItem::PlaylistItem::playing, [&, itemW](){
+        connect(itemW, &QCinePlaylistItem::PlaylistItem::playing, [&, itemW]() {
             Q_EMIT playing(itemW->getFile());
         });
 

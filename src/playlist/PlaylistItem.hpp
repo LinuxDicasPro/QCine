@@ -28,14 +28,14 @@ Q_DECLARE_METATYPE(MediaFileInfo)
 namespace QCinePlaylistItem {
 
     class PlaylistItem : public QDialog {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit PlaylistItem(const MediaFileInfo &media);
 
         QString getFile() { return str; }
 
-        void selectColor() { this->setStyleSheet(QCineStyle::Style().itemSelectStyle()); }
+        void selectColor() { this->setStyleSheet(QCineStyle::Style::itemSelectStyle()); }
 
         void unselectColor() { this->setStyleSheet("QDialog { border: none; background-color: none; }"); }
 

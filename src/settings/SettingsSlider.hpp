@@ -10,7 +10,7 @@
 namespace QCineSettingsSlider {
 
     class SettingsSlider : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit SettingsSlider(const QString &tooltip, const QString &unit = nullptr,

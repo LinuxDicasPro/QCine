@@ -11,7 +11,7 @@
 namespace QCineComboBox {
 
     class ListView : public QListView {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         using QListView::QListView;

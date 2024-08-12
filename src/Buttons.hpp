@@ -13,7 +13,7 @@ namespace QCineButtons {
 #define defMax 2
 
     class Buttons : public QPushButton {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Buttons(int size, QCineIcon::Icons icon, int max = defMax);
@@ -35,8 +35,9 @@ namespace QCineButtons {
         QCineIcon::Icons butonicon{};
         QCineIcon::Icon *icon{};
         QCineDebug::Debug *debug{};
-        int maxsize, num;
+
         QColor newcolor{};
+        int maxsize, num;
     };
 
 } // QCineButtons

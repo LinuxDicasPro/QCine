@@ -11,7 +11,7 @@
 namespace QCineCover {
 
     class Cover : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Cover(const QPixmap &p);

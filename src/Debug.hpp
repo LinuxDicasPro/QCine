@@ -43,7 +43,7 @@ namespace QCineDebug {
     };
 
     class Debug : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Debug();

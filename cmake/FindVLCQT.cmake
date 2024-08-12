@@ -100,13 +100,10 @@ set(VLCQT_WIDGETS_SRCS
         ${PWDW}/ControlAudio.cpp
         ${PWDW}/ControlVideo.cpp
         ${PWDW}/WidgetVideo.cpp
-        ${PWDW}/WidgetVolumeSlider.cpp
 )
 
 set(VLCQT_WIDGETS_HEADERS
         ${PWDW}/ControlAudio.h
         ${PWDW}/ControlVideo.h
-        ${PWDW}/SharedExportWidgets.h
         ${PWDW}/WidgetVideo.h
-        ${PWDW}/WidgetVolumeSlider.h
 )

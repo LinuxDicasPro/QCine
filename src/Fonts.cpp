@@ -19,7 +19,7 @@ namespace QCineFonts {
                 QFile file(QStandardPaths::locate(QStandardPaths::ConfigLocation, fileconf.toList().at(0).toString()));
                 if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
                     QTextStream in(&file);
-                    while (!in.atEnd()) {
+                    while (not in.atEnd()) {
                         QString line = in.readLine();
                         QRegularExpressionMatch match = fileconf.toList().at(1).toRegularExpression().match(line);
                         if (match.hasMatch()) {

@@ -33,7 +33,7 @@ namespace QCineCheckMouse {
             currentPos = lastMousePos;
             QApplication::restoreOverrideCursor();
 
-            if (!isMouseMove()) {
+            if (not isMouseMove()) {
                 if (hideTimer->isActive())
                     hideTimer->stop(); // Mouse se movendo, então não deve ocultar.
 
@@ -43,7 +43,7 @@ namespace QCineCheckMouse {
                 if (isNoMouseCheck()) {
                     debug->msg("Emissão bloqueada", "CheckMouse");
                 } else {
-                    if (!isAlready()) { // Evitando várias emissões
+                    if (not isAlready()) { // Evitando várias emissões
                         isAlready(true);
                         Q_EMIT movingMouse(isAlready());
                     }
@@ -57,7 +57,7 @@ namespace QCineCheckMouse {
                 if (isNoMouseCheck()) {
                     debug->msg("Emissão bloqueada", "CheckMouse");
                 } else {
-                    if (!hideTimer->isActive())
+                    if (not hideTimer->isActive())
                         hideTimer->start(changeHideTimer);
                 }
             }
@@ -68,9 +68,9 @@ namespace QCineCheckMouse {
      * Função para emitir um sinal em um determinado tempo em que o mouse está parado.
      */
     void CheckMouse::noMovingMouse() {
-        if (!isMouseMove() && !isNoMouseCheck()) {
+        if (not isMouseMove() and not isNoMouseCheck()) {
 
-            if (!isContextMenu() && !isDialog())
+            if (not isContextMenu() and not isDialog())
                 QApplication::setOverrideCursor(Qt::BlankCursor);
 
             debug->msg("Ocultando controles", "CheckMouse");

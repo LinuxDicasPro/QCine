@@ -20,7 +20,7 @@ namespace QCineWorkerPlaylist {
         foreach(QString str, strList) {
             QImage image(str); // Imagens passam pela verificação
 
-            if(isMediaFile(str.toStdString().c_str()) and image.isNull()) {
+            if (isMediaFile(str.toStdString().c_str()) and image.isNull()) {
                 QCineMediaInfo::MediaInfo info;
                 Q_EMIT mediaFile(info.getMediaInfo(str));
             }
@@ -36,9 +36,9 @@ namespace QCineWorkerPlaylist {
      * @param filename - Arquivo a ser verificado.
      * @return bool
      */
-    bool WorkerPlaylist::isMediaFile(const char *filename)  {
+    bool WorkerPlaylist::isMediaFile(const char *filename) {
         AVFormatContext *pFormatContext = avformat_alloc_context();
-        if (!pFormatContext)
+        if (not pFormatContext)
             return false;
 
         if (avformat_open_input(&pFormatContext, filename, nullptr, nullptr) != 0) {

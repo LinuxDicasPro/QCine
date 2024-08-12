@@ -8,7 +8,7 @@
 namespace QCineDialogEditable {
 
     class DialogEditable : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit DialogEditable();

@@ -25,6 +25,7 @@ namespace QCineStyle {
     };
 
     class Style : public QObject {
+    Q_OBJECT
 
     public:
         explicit Style();

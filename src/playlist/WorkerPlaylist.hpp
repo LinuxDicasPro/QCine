@@ -14,7 +14,7 @@ extern "C" {
 namespace QCineWorkerPlaylist {
 
     class WorkerPlaylist : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit WorkerPlaylist();

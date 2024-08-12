@@ -22,7 +22,7 @@
 namespace QCineSettings {
 
     class Settings : public QDialog {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Settings();
@@ -65,6 +65,8 @@ namespace QCineSettings {
         void enterEvent(QEnterEvent *event) override;
 
     private Q_SLOTS:
+        void useDefaultBackground(int i) { settingsManager->useDefaultBackground(i); }
+
         void handleComboBoxChange(int i);
 
         void handleComboBoxBg(int i);
@@ -83,8 +85,6 @@ namespace QCineSettings {
 
         void changeEnableEffectBG(int i);
 
-        void useDefaultBackground(int i);
-
         void changeEffectDuration(int i);
 
         void changeEffectDurationBG(int i);
@@ -92,17 +92,16 @@ namespace QCineSettings {
         void changeEffectTime(int i);
 
     private:
+        QCineDebug::Debug *debug{};
+        QCineSettingsManager::SettingsManager *settingsManager{};
+        QCineSettingsSlider::SettingsSlider *borderSize{};
         QGridLayout *controlsEngine{}, *controlsTheme{}, *bgTheme{};
         QGroupBox *enginebox{}, *themebox{}, *bgbox{}, *effcontrol{}, *effectgroup{}, *effectbg{};
         QVBoxLayout *layout{}, *performanceBox{}, *effectBox{}, *customBox{};
         QVBoxLayout *pllayout{}, *bglayout{}, *controllayout{};
         QWidget *performance{}, *effect{}, *custom{};
         QTabWidget *tabWidget{};
-
         QCheckBox *gradck{}, *effectDisable{}, *effectDisableBG{}, *includedef{};
-        QCineDebug::Debug *debug{};
-        QCineSettingsManager::SettingsManager *settingsManager{};
-        QCineSettingsSlider::SettingsSlider *borderSize{};
     };
 
 } // QCineSettings

@@ -11,7 +11,7 @@
 namespace QCineFileDialog {
 
     class FileDialog : public QFileDialog {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit FileDialog();

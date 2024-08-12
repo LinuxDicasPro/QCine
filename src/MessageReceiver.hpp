@@ -8,7 +8,7 @@
 namespace QCineMessageReceiver {
 
     class MessageReceiver : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public Q_SLOTS:
         void receivedMessage(int instanceId, const QByteArray &message);

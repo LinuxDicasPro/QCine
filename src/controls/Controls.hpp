@@ -16,7 +16,7 @@
 namespace QCineControls {
 
     class Controls : public QDialog {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Controls(QCinePlayer::Player *pPlayer);
@@ -53,7 +53,7 @@ namespace QCineControls {
 
         void leaveEvent(QEvent *event) override;
 
-        void paintEvent(QPaintEvent* event) override;
+        void paintEvent(QPaintEvent *event) override;
 
     private Q_SLOTS:
         void changeMute();

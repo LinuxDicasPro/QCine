@@ -1,0 +1,18 @@
+version 2024.08.11:
+- play, pause, next, previous, volume, mute, slider progress, playlist.
+- fullscreen mode.
+- add item from playlist.
+- clear playlist.
+- add settings.
+- custom interface.
+- custom effects.
+- backends: qmediaplayer, vlc-qt6.
+- environment variables settings.
+- one click for play or pause.
+- control and playlist auto show or hide.
+- default media info using a new thread, using ffmpeg and qmediaplayer.
+- internacionalization support.
+bugfix:
+- control and playlist are floating widgets of the qtooltip type, overlaps all other windows.
+OBS:
+- the comments are in portuguese.

@@ -16,7 +16,7 @@ namespace QCineVideoInterface {
 
     /** Layout para o QVideoWidget */
     class VideoWidget : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit VideoWidget() {

@@ -11,7 +11,7 @@
 namespace QCineSlider {
 
     class Slider : public QSlider {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit Slider();

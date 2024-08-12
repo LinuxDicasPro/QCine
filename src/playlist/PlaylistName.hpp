@@ -30,7 +30,6 @@ namespace QCinePlaylistName {
 
     private:
         QCineDialogEditable::DialogEditable *dialogEditable{};
-        QPalette originalPalette{this->palette()}, transparencyPalette{this->palette()};
     };
 
 } // QCinePlaylistName

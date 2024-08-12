@@ -9,7 +9,7 @@
 namespace QCineClickMapper {
 
     class ClickMapper : public QObject {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit ClickMapper(QObject *parent = nullptr);
@@ -24,6 +24,7 @@ namespace QCineClickMapper {
 
     Q_SIGNALS:
         void singleClick();
+
         void doubleClick();
 
 #pragma clang diagnostic pop

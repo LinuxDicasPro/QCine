@@ -15,7 +15,7 @@
 namespace QCineBackgroundTransition {
 
     class BackgroundTransition : public QGraphicsView {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit BackgroundTransition(bool noBlur = false,
@@ -41,10 +41,8 @@ namespace QCineBackgroundTransition {
         void effectEnd();
 
     private:
-        void itemPixmap(QPixmap &pixmap,
-                        QGraphicsPixmapItem *item = nullptr,
-                        bool random = false,
-                        const QString &str = nullptr);
+        void itemPixmap(QPixmap &pixmap, QGraphicsPixmapItem *item = nullptr,
+                        bool random = false, const QString &str = nullptr);
 
         [[nodiscard]] bool isNextPixmap() const { return isnextpixmap; }
 
@@ -54,7 +52,6 @@ namespace QCineBackgroundTransition {
 
         void isNextPixmap(bool b) { isnextpixmap = b; }
 
-        bool istransition{false}, isnextpixmap{false};
         QCineDebug::Debug *debug{};
         QCineDefaultPath::DefaultPath *defaultPath{};
         QCineSettingsManager::SettingsManager *settingsManager{};
@@ -63,8 +60,10 @@ namespace QCineBackgroundTransition {
         QGraphicsPixmapItem *item1{}, *item2{};
         QGraphicsScene *scene{};
         QPropertyAnimation *animation{};
+
         QPixmap pixmap1{}, pixmap2{}, nextPixmap{};
         QSize screenSize{};
+        bool istransition{false}, isnextpixmap{false};
     };
 
 } // QCineBackground

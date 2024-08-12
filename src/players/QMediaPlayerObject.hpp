@@ -13,7 +13,7 @@
 namespace QCineMediaPlayerObject {
 
     class QMediaPlayerObject : public QObject, public QCineMediaPlayerInterface::MediaPlayerInterface {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit QMediaPlayerObject();
@@ -28,15 +28,15 @@ namespace QCineMediaPlayerObject {
 
         void Stop() override { player->stop(); }
 
-        void setSeek(int i) override { player->setPosition((qint64)i); }
+        void setSeek(int i) override { player->setPosition((qint64) i); }
 
         void setMute(bool b) override { audio->setMuted(b); }
 
-        void setVolume(int i) override { audio->setVolume((float)i); }
+        void setVolume(int i) override { audio->setVolume((float) i); }
 
         bool Muted() override { return audio->isMuted(); }
 
-        int Volume() override { return (int)audio->volume(); }
+        int Volume() override { return (int) audio->volume(); }
 
         QWidget *getVideo() override { return video; }
 

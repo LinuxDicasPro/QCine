@@ -25,4 +25,5 @@ namespace QCineLabel {
         this->setText(l);
         this->setStyleSheet(QCineStyle::Style::labelStyle(s > 0 ? xrad : mrad));
     }
+
 } // QCineLabel

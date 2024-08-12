@@ -7,7 +7,7 @@
 namespace QCinePlaylistModel {
 
     class PlaylistModel : public QListWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit PlaylistModel();

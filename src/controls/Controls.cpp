@@ -32,7 +32,7 @@ namespace QCineControls {
         connect(volume, &QPushButton::clicked, this, &Controls::changeMute);
 
         /** Controle de volume */
-        auto volumeslider = new QCineSlider::Slider();
+        auto volumeslider = new QCineSlider::Slider(); //todo
         volumeslider->setEnabled(true);
         volumeslider->setMinimum(0);
         volumeslider->setMaximum(100);
@@ -123,7 +123,7 @@ namespace QCineControls {
 
     void Controls::paintEvent(QPaintEvent *event) {
         if (settingsManager->doubleGradient() == checkTrue and
-                settingsManager->programTheme() == QCineSettingsManager::Gradient) {
+            settingsManager->programTheme() == QCineSettingsManager::Gradient) {
             QStyleOption opt;
             opt.initFrom(this);
             QPainter p(this);

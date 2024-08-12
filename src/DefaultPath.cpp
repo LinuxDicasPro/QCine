@@ -23,7 +23,7 @@ namespace QCineDefaultPath {
     QString DefaultPath::findPath(const QString &str) {
         auto defDir = QString("%1%2").arg((QFileInfo::exists(dir + str)) ? dir : oldDir, str);
 
-        if (!QFileInfo::exists(defDir))
+        if (not QFileInfo::exists(defDir))
             return QString("%1%2").arg((QFileInfo::exists(px + str)) ? px : newPx, str);
 
         return defDir;

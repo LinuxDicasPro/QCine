@@ -52,7 +52,7 @@ namespace QCineSlider {
             const QRect sliderRect = style()->subControlRect(QStyle::CC_Slider, &opt, QStyle::SC_SliderHandle, this);
             const QPoint center = sliderRect.center() - sliderRect.topLeft();
 
-            if (!sliderRect.contains(event->pos())) {
+            if (not sliderRect.contains(event->pos())) {
                 event->accept();
                 QPoint pt = event->pos() - center;
                 int value = pixelPosToRangeValue(this->orientation() == Qt::Horizontal ? pt.x() : pt.y());
@@ -68,9 +68,9 @@ namespace QCineSlider {
     }
 
     void Slider::mouseMoveEvent(QMouseEvent *event) {
-        const int o = style()->pixelMetric(QStyle::PM_SliderLength ) - 1;
-        int v = QStyle::sliderValueFromPosition(minimum(), maximum(), event->pos().x()-o/2, width()-o, false);
-        Q_EMIT onHover((int)event->position().x(), v);
+        const int o = style()->pixelMetric(QStyle::PM_SliderLength) - 1;
+        int v = QStyle::sliderValueFromPosition(minimum(), maximum(), event->pos().x() - o / 2, width() - o, false);
+        Q_EMIT onHover((int) event->position().x(), v);
         QSlider::mouseMoveEvent(event);
     }
 

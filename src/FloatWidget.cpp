@@ -5,6 +5,7 @@
 #include "FloatWidget.hpp"
 
 namespace QCineFloatWidget {
+
     FloatWidget::FloatWidget(QWidget *parent) : QWidget(parent) {
         this->setWindowFlag(Qt::ToolTip, true);
         this->setAttribute(Qt::WA_TranslucentBackground, true);

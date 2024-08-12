@@ -8,7 +8,7 @@
 namespace QCineFloatWidget {
 
     class FloatWidget : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit FloatWidget(QWidget *parent);

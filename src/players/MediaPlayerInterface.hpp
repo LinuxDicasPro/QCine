@@ -14,15 +14,25 @@ namespace QCineMediaPlayerInterface {
     class MediaPlayerInterface {
     public:
         virtual void setMedia(const QString &media) = 0;
+
         virtual void Play() = 0;
+
         virtual void Resume() = 0;
+
         virtual void Pause() = 0;
+
         virtual void Stop() = 0;
+
         virtual void setSeek(int i) = 0;
+
         virtual void setVolume(int i) = 0;
+
         virtual void setMute(bool b) = 0;
+
         virtual int Volume() = 0;
+
         virtual bool Muted() = 0;
+
         virtual QWidget *getVideo() = 0;
     };
 

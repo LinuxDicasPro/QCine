@@ -17,7 +17,7 @@
 namespace QCineEnvironmentVariable {
 
     class EnvironmentVariable : public QWidget {
-        Q_OBJECT
+    Q_OBJECT
 
     public:
         explicit EnvironmentVariable();
@@ -42,10 +42,10 @@ namespace QCineEnvironmentVariable {
         QGridLayout *envlayout{};
         QGroupBox *envbox{};
         QVBoxLayout *envvar{}, *enviromentBox{};
+        QSettings *settings{};
 
         QStringList audiobackend{"auto", "ffmpeg", "gstreamer"};
-        QSettings *settings{};
-        QStringList list = {
+        QStringList list{
                 "LIBVA_DRIVER_NAME=iHD",
                 "GST_VAAPI_ALL_DRIVERS=1",
                 "MESA_GLTHREAD=true",

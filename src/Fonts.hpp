@@ -3,7 +3,6 @@
 
 #include <QFile>
 #include <QFont>
-#include <QObject>
 #include <QRegularExpression>
 #include <QStandardPaths>
 
@@ -11,8 +10,7 @@
 
 namespace QCineFonts {
 
-    class Fonts : public QObject {
-        Q_OBJECT
+    class Fonts {
 
     public:
         explicit Fonts();

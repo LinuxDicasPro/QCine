@@ -19,9 +19,7 @@ namespace QCineEffects {
 
         /** Animação do widget. */
         animation = new QPropertyAnimation(opacityEffect, "opacity");
-        animation->setDuration(
-                settingsManager->statusEffect() ? 0 : settingsManager->changeEffect()
-        );
+        animation->setDuration(settingsManager->statusEffect() ? 0 : settingsManager->changeEffect());
 
         connect(animation, &QPropertyAnimation::valueChanged, this, &Effects::setCurrent);
         connect(animation, &QPropertyAnimation::finished, [&]() { isAnimationRunning(false); });

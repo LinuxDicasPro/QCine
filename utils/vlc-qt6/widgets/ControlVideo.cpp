@@ -17,14 +17,8 @@
 * along with this library. If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
-#include <QtCore/QTimer>
-
-
-#if QT_VERSION >= 0x060000
+#include <QTimer>
 #include <QAction>
-#elif QT_VERSION >= 0x050000
-#include <QtWidgets/QAction>
-#endif
 
 #include "core/Error.h"
 #include "core/MediaPlayer.h"

@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 #pragma ide diagnostic ignored "UnreachableCode"
 
     QLoggingCategory::setFilterRules("*.error=false\n*.warning=false\n*.critical=false\n*.info=false");
-    if (!DEBUG)
+    if (not DEBUG)
         QLoggingCategory::setFilterRules("*=false");
 
 #pragma clang diagnostic pop
@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
 
     /** Interface gráfica */
     QCine::QCine QCine;
-    if (!parser.positionalArguments().isEmpty()) {
+    if (not parser.positionalArguments().isEmpty()) {
         debug->msg("Passando os argumentos da primeira instância", "Main");
         QCine.addArgs(parser.positionalArguments());
     }

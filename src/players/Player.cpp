@@ -14,8 +14,10 @@ namespace QCinePlayer {
 
         /** Engine do QMediaPlayer */
         mediaPlayer = new QCineMediaPlayerObject::QMediaPlayerObject();
-        connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::positionChange, this, &Player::positionChange);
-        connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::durationChange, this, &Player::durationChange);
+        connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::positionChange, this,
+                &Player::positionChange);
+        connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::durationChange, this,
+                &Player::durationChange);
         connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::endMedia, this, &Player::endMedia);
 
         /** Engine do VLC-QT6 */
@@ -35,15 +37,15 @@ namespace QCinePlayer {
         if (currentFile.isEmpty() and media.isEmpty())
             return;
 
-        if (!media.isEmpty()) {
+        if (not media.isEmpty()) {
             player->setMedia(media);
             currentFile = media;
         } else {
-            if (!isPlaying())
+            if (not isPlaying())
                 player->setMedia(currentFile);
         }
 
-        if (isPlaying() && media.isEmpty()) {
+        if (isPlaying() and media.isEmpty()) {
             debug->msg("Continuando reprodução", "Player");
             player->Resume();
         } else {
@@ -55,7 +57,7 @@ namespace QCinePlayer {
         isPlaying(true);
         isPausing(false);
 
-        if (!isBlockScreenSaver()) {
+        if (not isBlockScreenSaver()) {
             debug->msg("Bloqueio de suspensão de tela e screensaver", "Player");
             screenSaver->disable();
             isBlockScreenSaver(true);
@@ -94,10 +96,10 @@ namespace QCinePlayer {
         auto s = settingsManager->videoEngine();
         if (s == QCineSettingsManager::UseVlcQT) {
             debug->msg("Usando VlcQT", "Player");
-            player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface*>(vlcPlayer);
+            player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface *>(vlcPlayer);
         } else {
             debug->msg("Usando QMediaPlayer", "Player");
-            player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface*>(mediaPlayer);
+            player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface *>(mediaPlayer);
         }
     }
 
@@ -135,12 +137,12 @@ namespace QCinePlayer {
         bool hasValidVideo{false};
         for (unsigned int i = 0; i < pFormatContext->nb_streams; i++) {
             AVStream *stream = pFormatContext->streams[i];
-            AVCodecParameters* codecParameters = stream->codecpar;
+            AVCodecParameters *codecParameters = stream->codecpar;
             if (codecParameters->codec_type == AVMEDIA_TYPE_VIDEO and
                 not (stream->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
-                    if (codecParameters->width > 0 and codecParameters->height > 0) {
-                        hasValidVideo = true;
-                        break;
+                if (codecParameters->width > 0 and codecParameters->height > 0) {
+                    hasValidVideo = true;
+                    break;
                 }
             }
         }
