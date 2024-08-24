@@ -11,9 +11,12 @@ extern "C" {
 #include <Debug.hpp>
 #include <QMediaPlayerObject.hpp>
 #include <SettingsManager.hpp>
-#include <VlcQtObject.hpp>
 
 #include <screensaver.h>
+
+#ifdef USE_VLC_QT
+#include <VlcQtObject.hpp>
+#endif
 
 namespace QCinePlayer {
 
@@ -85,8 +88,11 @@ namespace QCinePlayer {
         QCineSettingsManager::SettingsManager *settingsManager{};
         QCineMediaPlayerObject::QMediaPlayerObject *mediaPlayer{};
         QCineMediaPlayerInterface::MediaPlayerInterface *player{};
-        QCineVlcQtObject::VlcQtObject *vlcPlayer{};
         ScreenSaver *screenSaver{};
+
+#ifdef USE_VLC_QT
+        QCineVlcQtObject::VlcQtObject *vlcPlayer{};
+#endif
 
         QString currentFile{};
         bool playing{false}, pausing{false}, blockScreenSaver{false};

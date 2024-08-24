@@ -7,7 +7,7 @@
 namespace QCineVlcQtObject {
 
     VlcQtObject::VlcQtObject() {
-        video = new QCineVideoInterface::VlcVideo();
+        video = new QCineVlcVideo::VlcVideo();
         initPlayer();
     }
 

@@ -20,11 +20,13 @@ namespace QCinePlayer {
                 &Player::durationChange);
         connect(mediaPlayer, &QCineMediaPlayerObject::QMediaPlayerObject::endMedia, this, &Player::endMedia);
 
+#ifdef USE_VLC_QT
         /** Engine do VLC-QT6 */
         vlcPlayer = new QCineVlcQtObject::VlcQtObject();
         connect(vlcPlayer, &QCineVlcQtObject::VlcQtObject::positionChange, this, &Player::positionChange);
         connect(vlcPlayer, &QCineVlcQtObject::VlcQtObject::durationChange, this, &Player::durationChange);
         connect(vlcPlayer, &QCineVlcQtObject::VlcQtObject::endMedia, this, &Player::endMedia);
+#endif
 
         selectEngine();
     }
@@ -95,8 +97,15 @@ namespace QCinePlayer {
     void Player::selectEngine() {
         auto s = settingsManager->videoEngine();
         if (s == QCineSettingsManager::UseVlcQT) {
+
+#ifdef USE_VLC_QT
             debug->msg("Usando VlcQT", "Player");
             player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface *>(vlcPlayer);
+#else
+            debug->msg("Vlc-Qt não usado. Usando QMediaPlayer", "Player");
+            player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface *>(mediaPlayer);
+#endif
+
         } else {
             debug->msg("Usando QMediaPlayer", "Player");
             player = dynamic_cast<QCineMediaPlayerInterface::MediaPlayerInterface *>(mediaPlayer);

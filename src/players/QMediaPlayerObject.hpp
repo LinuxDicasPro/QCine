@@ -7,7 +7,7 @@
 #include <QVideoFrame>
 #include <QVideoSink>
 
-#include <VideoInterface.hpp>
+#include <VideoPlayer.hpp>
 #include <MediaPlayerInterface.hpp>
 
 namespace QCineMediaPlayerObject {
@@ -65,7 +65,7 @@ namespace QCineMediaPlayerObject {
         QAudioOutput *audio{};
         QMediaPlayer *player{};
         QVideoSink *sink{};
-        QCineVideoInterface::VideoWidget *video{};
+        QCineVideoPlayer::VideoPlayer *video{};
     };
 
 } // QCineMediaPlayerObject

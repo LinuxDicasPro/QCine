@@ -115,11 +115,18 @@ namespace QCineSettingsManager {
     private:
         QPoint center() { return rect.center() - win->frameGeometry().center(); }
 
+        QWidget *win{};
+
         QRect rect{QGuiApplication::primaryScreen()->geometry()};
         QStringList themes{tr("Default"), tr("Gradient"), tr("Rounded")};
         QStringList bgTheme{tr("Default"), tr("Random")};
-        QStringList engine{"QMediaPlayer", "VlcQT"};
-        QWidget *win{};
+
+        QStringList engine{
+            "QMediaPlayer"
+#ifdef USE_VLC_QT
+            , "VlcQT"
+#endif
+        };
     };
 
 } // QCineSettingsManager

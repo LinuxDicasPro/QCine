@@ -54,18 +54,24 @@ find_package(Qt${QT_VERSION} COMPONENTS
         REQUIRED
 )
 
+option(USE_VLC_QT "Enable vlc-qt" ON)
+
+if (USE_VLC_QT)
+    include(FindVLCQT)
+    add_definitions(-DUSE_VLC_QT)
+endif ()
+
 include(FindFFmpeg)
-include(FindVLCQT)
 include(FindScreenSaver)
 
-file(GLOB DIRECTORIES CONFIGURE_DEPENDS LIST_DIRECTORIES true utils utils/*/ src src/*/)
+file(GLOB DIRECTORIES CONFIGURE_DEPENDS LIST_DIRECTORIES true utils utils/*/ src_extra/*/ src src/*/)
 
-foreach(DIR ${DIRECTORIES})
-    if(IS_DIRECTORY ${DIR})
+foreach (DIR ${DIRECTORIES})
+    if (IS_DIRECTORY ${DIR})
         list(APPEND SRC_DIRS ${DIR})
         message(STATUS ${DIR})
     endif ()
-endforeach()
+endforeach ()
 
 include_directories(
         ${SRC_DIRS}
@@ -78,12 +84,21 @@ include_directories(
 add_subdirectory(utils/SingleApplication)
 file(GLOB_RECURSE SRC_FILES CONFIGURE_DEPENDS src/*)
 
+if (USE_VLC_QT)
+    set(SRC_FILES
+            ${SRC_FILES}
+            src_extra/player/VlcQtObject.cpp
+            src_extra/player/VlcQtObject.hpp
+            src_extra/player/VlcVideo.cpp
+            src_extra/player/VlcVideo.hpp
+    )
+endif ()
+
 add_executable(${PRG_NAME}
         ${SRC_FILES}
         ${VLCQT_CORE_SRCS}
         ${VLCQT_CORE_HEADERS}
-        ${VLCQT_WIDGETS_SRCS}
-        ${VLCQT_WIDGETS_HEADERS}
+        ${VLCQT_WIDGETS}
         ${SCREENSAVER_SOURCES}
 )
 

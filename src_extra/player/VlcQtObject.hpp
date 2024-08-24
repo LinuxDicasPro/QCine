@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include <VideoInterface.hpp>
+#include <VlcVideo.hpp>
 #include <MediaPlayerInterface.hpp>
 
 #include <core/Audio.h>
@@ -72,7 +72,7 @@ namespace QCineVlcQtObject {
     private:
         void initPlayer();
 
-        QCineVideoInterface::VlcVideo *video{};
+        QCineVlcVideo::VlcVideo *video{};
         VlcAudio *audio{};
         VlcInstance *instance{};
         VlcMediaPlayer *player{};
