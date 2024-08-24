@@ -56,7 +56,6 @@ namespace QCineEnvironmentVariable {
                 "__GL_SYNC_TO_VBLANK=0",
                 "__GL_MaxFramesAllowed=1",
                 "__NV_PRIME_RENDER_OFFLOAD=1",
-                "__NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0",
                 "__GLX_VENDOR_LIBRARY_NAME=nvidia",
                 "EGL_NV_triple_buffer=1"
         };

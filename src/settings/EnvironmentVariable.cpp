@@ -140,9 +140,6 @@ namespace QCineEnvironmentVariable {
             if (s.value("__NV_PRIME_RENDER_OFFLOAD=1").toInt() == checkTrue)
                 qputenv("__NV_PRIME_RENDER_OFFLOAD", "1");
 
-            if (s.value("__NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0").toInt() == checkTrue)
-                qputenv("__NV_PRIME_RENDER_OFFLOAD_PROVIDER", "NVIDIA-G0");
-
             if (s.value("__GLX_VENDOR_LIBRARY_NAME=nvidia").toInt() == checkTrue)
                 qputenv("__GLX_VENDOR_LIBRARY_NAME", "nvidia");
 
