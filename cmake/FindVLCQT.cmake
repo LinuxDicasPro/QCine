@@ -71,7 +71,6 @@ set(VLCQT_CORE_HEADERS
         ${PWDC}/MediaPlayer.h
         ${PWDC}/MetaManager.h
         ${PWDC}/ModuleDescription.h
-        ${PWDC}/SharedExportCore.h
         ${PWDC}/Stats.h
         ${PWDC}/TrackModel.h
         ${PWDC}/Video.h
@@ -96,14 +95,7 @@ if (${LIBVLC_VERSION} EQUAL 0x020200 OR ${LIBVLC_VERSION} GREATER 0x020200)
     )
 endif ()
 
-set(VLCQT_WIDGETS_SRCS
-        ${PWDW}/ControlAudio.cpp
-        ${PWDW}/ControlVideo.cpp
+set(VLCQT_WIDGETS
         ${PWDW}/WidgetVideo.cpp
-)
-
-set(VLCQT_WIDGETS_HEADERS
-        ${PWDW}/ControlAudio.h
-        ${PWDW}/ControlVideo.h
         ${PWDW}/WidgetVideo.h
 )

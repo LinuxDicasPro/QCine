@@ -16,28 +16,16 @@
 * along with this library. If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
-#include <QtCore/QDebug>
-#include <vlc/vlc.h>
+#include "Error.h"
 
-#include "core/Error.h"
-
-QString VlcError::errmsg() {
-    QString error;
+void VlcError::showErrmsg() {
+    QString error{};
     if (libvlc_errmsg()) {
         error = QString::fromUtf8(libvlc_errmsg());
         libvlc_clearerr();
     }
 
-    return error;
-}
-
-void VlcError::showErrmsg() {
-    // Outputs libvlc error message if there is any
-    QString error = errmsg();
     if (!error.isEmpty()) {
-        qWarning() << "libvlc"
-                   << "Error:" << error;
+        qWarning() << "libvlc" << "Error:" << error;
     }
 }
-
-void VlcError::clearerr() {}

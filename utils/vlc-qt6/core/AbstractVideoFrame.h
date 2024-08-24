@@ -28,7 +28,6 @@
 #include <QtCore/QByteArray>
 
 #include "Enums.h"
-#include "SharedExportCore.h"
 
 /*!
     \struct VlcAbstractVideoFrame AbstractVideoFrame.h VLCQtCore/AbstractVideoFrame.h
@@ -36,7 +35,7 @@
     \brief Abstract video frame data container
     \since VLC-Qt 1.1
 */
-struct VLCQT_CORE_EXPORT VlcAbstractVideoFrame {
+struct VlcAbstractVideoFrame {
     /*!
         \brief VlcVideoFrame constructor.
         \param planeCount

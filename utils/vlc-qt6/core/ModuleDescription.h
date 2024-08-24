@@ -21,14 +21,12 @@
 
 #include <QtCore/QString>
 
-#include "SharedExportCore.h"
-
 /*!
     \class VlcModuleDescription ModuleDescription.h VLCQtCore/ModuleDescription.h
     \ingroup VLCQtCore
     \brief VLC module description
 */
-class VLCQT_CORE_EXPORT VlcModuleDescription {
+class VlcModuleDescription {
 public:
     /*!
         \enum Type

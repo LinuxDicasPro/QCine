@@ -21,8 +21,6 @@
 
 #include <QtCore/QObject>
 
-#include "SharedExportCore.h"
-
 class VlcMediaPlayer;
 
 struct libvlc_equalizer_t;
@@ -34,7 +32,7 @@ struct libvlc_equalizer_t;
 
     \since libVLC 2.2
 */
-class VLCQT_CORE_EXPORT VlcEqualizer : public QObject {
+class VlcEqualizer : public QObject {
     Q_OBJECT
 public:
     /*!

@@ -31,13 +31,6 @@
 #include "core/Video.h"
 #include "widgets/WidgetVideo.h"
 
-VlcWidgetVideo::VlcWidgetVideo(VlcMediaPlayer *player, QWidget *parent) : QFrame(parent), _vlcMediaPlayer(player) {
-    if (_vlcMediaPlayer)
-        connect(_vlcMediaPlayer, &VlcMediaPlayer::vout, this, &VlcWidgetVideo::applyPreviousSettings);
-
-    initWidgetVideo();
-}
-
 VlcWidgetVideo::VlcWidgetVideo(QWidget *parent) : QFrame(parent), _vlcMediaPlayer(nullptr) {
     initWidgetVideo();
 }

@@ -24,14 +24,12 @@
 #include <QtCore/QSizeF>
 #include <QtCore/QStringList>
 
-#include "SharedExportCore.h"
-
 /*!
     \class Vlc Enums.h VLCQtCore/Enums.h
     \ingroup VLCQtCore
     \brief Common enumerations
 */
-class VLCQT_CORE_EXPORT Vlc : public QObject // LCOV_EXCL_LINE
+class Vlc : public QObject // LCOV_EXCL_LINE
 {
     Q_OBJECT
 

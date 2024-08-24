@@ -22,8 +22,6 @@
 #ifndef VLCQT_ABSTRACTVIDEOSTREAM_H_
 #define VLCQT_ABSTRACTVIDEOSTREAM_H_
 
-#include "SharedExportCore.h"
-
 class VlcMediaPlayer;
 
 /*!
@@ -36,7 +34,7 @@ class VlcMediaPlayer;
 
     \since VLC-Qt 1.1
  */
-class VLCQT_CORE_EXPORT VlcAbstractVideoStream {
+class VlcAbstractVideoStream {
 public:
     explicit VlcAbstractVideoStream();
     virtual ~VlcAbstractVideoStream();

@@ -26,7 +26,6 @@
 #include <QtCore/QMap>
 
 #include "Enums.h"
-#include "SharedExportCore.h"
 
 class VlcMediaPlayer;
 
@@ -39,7 +38,7 @@ struct libvlc_media_player_t;
 
     A group of video controls functions.
 */
-class VLCQT_CORE_EXPORT VlcVideo : public QObject {
+class VlcVideo : public QObject {
     Q_OBJECT
 public:
     /*!

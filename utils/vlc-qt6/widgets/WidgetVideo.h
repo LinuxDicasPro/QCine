@@ -42,13 +42,8 @@ class VlcMediaPlayer;
 */
 class VlcWidgetVideo : public QFrame, public VlcVideoDelegate {
     Q_OBJECT
+
 public:
-    /*!
-        \brief VlcWidgetVideo constructor
-        \param player media player
-        \param parent video widget's parent GUI widget
-    */
-    explicit VlcWidgetVideo(VlcMediaPlayer *player, QWidget *parent = nullptr);
 
     /*!
         \brief VlcWidgetVideo constructor
@@ -178,6 +173,7 @@ public:
     void release() override;
 
 public slots:
+
     /*!
         \brief Enable default video settings
 

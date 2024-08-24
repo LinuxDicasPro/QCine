@@ -31,7 +31,6 @@
 #include "AbstractVideoFrame.h"
 #include "AbstractVideoStream.h"
 #include "Enums.h"
-#include "SharedExportCore.h"
 
 class VlcMediaPlayer;
 
@@ -47,7 +46,7 @@ class VlcMediaPlayer;
     \see VlcAbstractVideoFrame
     \since VLC-Qt 1.1
  */
-class VLCQT_CORE_EXPORT VlcVideoStream : public QObject, public VlcAbstractVideoStream {
+class VlcVideoStream : public QObject, public VlcAbstractVideoStream {
     Q_OBJECT
 public:
     /*!

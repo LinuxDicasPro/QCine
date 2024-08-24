@@ -24,7 +24,6 @@
 #include <QtCore/QMap>
 
 #include "Enums.h"
-#include "SharedExportCore.h"
 
 class VlcMediaPlayer;
 
@@ -37,7 +36,7 @@ struct libvlc_media_player_t;
 
     A group of audio controls functions.
 */
-class VLCQT_CORE_EXPORT VlcAudio : public QObject {
+class VlcAudio : public QObject {
     Q_OBJECT
     friend class VlcAudioCallbackHelper;
 

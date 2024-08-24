@@ -22,7 +22,6 @@
 #include <QtCore/QObject>
 
 #include "Enums.h"
-#include "SharedExportCore.h"
 
 class VlcModuleDescription;
 
@@ -36,7 +35,7 @@ struct libvlc_instance_t;
     A basic Instance manager for VLC-Qt library.
     It provides main instance controls.
 */
-class VLCQT_CORE_EXPORT VlcInstance : public QObject {
+class VlcInstance : public QObject {
     Q_OBJECT
 public:
     /*!

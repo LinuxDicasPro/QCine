@@ -21,8 +21,6 @@
 
 #include <QAbstractListModel>
 
-#include "SharedExportCore.h"
-
 /*!
     \class VlcTrackModel TrackModel.h VLCQtCore/TrackModel.h
     \ingroup VLCQtCore
@@ -32,7 +30,7 @@
 
     \since VLC-Qt 1.1
 */
-class VLCQT_CORE_EXPORT VlcTrackModel : public QAbstractListModel {// LCOV_EXCL_LINE
+class VlcTrackModel : public QAbstractListModel {// LCOV_EXCL_LINE
     Q_OBJECT
     /*!
         \brief Current tracks count

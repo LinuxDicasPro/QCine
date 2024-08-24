@@ -23,7 +23,6 @@
 #define VLCQT_YUVVIDEOFRAME_H_
 
 #include "AbstractVideoFrame.h"
-#include "SharedExportCore.h"
 
 /*!
     \struct VlcYUVVideoFrame YUVVideoFrame.h VLCQtCore/YUVVideoFrame.h
@@ -31,7 +30,7 @@
     \brief Video YUV frame data container
     \since VLC-Qt 1.1
 */
-struct VLCQT_CORE_EXPORT VlcYUVVideoFrame : VlcAbstractVideoFrame {
+struct VlcYUVVideoFrame : VlcAbstractVideoFrame {
     /*!
         \brief VlcVideoFrame constructor.
         This construction ensures data is set and containers prepared.
