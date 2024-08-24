@@ -4,12 +4,12 @@
 <context>
     <name>QCine::QCine</name>
     <message>
-        <location filename="../src/QCine.cpp" line="446"/>
+        <location filename="../src/QCine.cpp" line="471"/>
         <source>Open Files</source>
         <translation>Abrir Arquivos</translation>
     </message>
     <message>
-        <location filename="../src/QCine.cpp" line="452"/>
+        <location filename="../src/QCine.cpp" line="477"/>
         <source>Settings</source>
         <translation>Configurações</translation>
     </message>
@@ -19,7 +19,7 @@
     <message>
         <location filename="../src/settings/EnvironmentVariable.cpp" line="82"/>
         <source>QMediaPlayer Backend</source>
-        <translation type="unfinished"></translation>
+        <translation>QMediaPlayer Backend</translation>
     </message>
     <message>
         <location filename="../src/settings/EnvironmentVariable.cpp" line="89"/>
@@ -32,117 +32,141 @@
     <message>
         <location filename="../src/settings/Settings.cpp" line="57"/>
         <source>Include Default Background</source>
-        <translation type="unfinished"></translation>
+        <translation>Incluir Plano de Fundo Padrão</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="63"/>
         <source>Double Gradient Strength</source>
-        <translation type="unfinished"></translation>
+        <translation>Dobrar Intensidade do Gradiente</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="69"/>
         <source>Disable Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativar Efeitos</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="73"/>
         <source>Disable Background Effect</source>
-        <translation type="unfinished"></translation>
+        <translation>Desativar Efeitos do Plano de Fundo</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="78"/>
         <source>Effect Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Duração dos Efeitos</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="84"/>
+        <location filename="../src/settings/Settings.cpp" line="85"/>
         <source>Transition Duration</source>
-        <translation type="unfinished"></translation>
+        <translation>Duração da Transição</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="90"/>
+        <location filename="../src/settings/Settings.cpp" line="92"/>
         <source>Hide Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Tempo Ocioso para Ocultação</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="96"/>
+        <location filename="../src/settings/Settings.cpp" line="98"/>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>Opacidade</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="102"/>
+        <location filename="../src/settings/Settings.cpp" line="104"/>
         <source>Blur</source>
-        <translation type="unfinished"></translation>
+        <translation>Desfoco</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="108"/>
+        <location filename="../src/settings/Settings.cpp" line="110"/>
         <source>Border Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/settings/Settings.cpp" line="143"/>
-        <source>Multimedia Engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Tamanho da Borda</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="145"/>
-        <source>Current Engine</source>
-        <translation type="unfinished"></translation>
+        <source>Multimedia Engine</source>
+        <translation>Opções de Engine</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="149"/>
-        <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/settings/Settings.cpp" line="147"/>
+        <source>Current Engine</source>
+        <translation>Engine Atual</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="151"/>
-        <source>Program Theme</source>
-        <translation type="unfinished"></translation>
+        <source>Themes</source>
+        <translation>Tema</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="159"/>
-        <source>Background</source>
-        <translation type="unfinished"></translation>
+        <location filename="../src/settings/Settings.cpp" line="153"/>
+        <source>Program Theme</source>
+        <translation>Tema do Programa</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="161"/>
+        <source>Background</source>
+        <translation>Plano de Fundo</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/Settings.cpp" line="163"/>
         <source>Background Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Tema do Plano de Fundo</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="167"/>
+        <location filename="../src/settings/Settings.cpp" line="169"/>
         <source>Player Controls</source>
-        <translation type="unfinished"></translation>
+        <translation>Controles Multimídia</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="172"/>
+        <location filename="../src/settings/Settings.cpp" line="174"/>
         <source>Transition Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efeitos de Transição</translation>
     </message>
     <message>
-        <location filename="../src/settings/Settings.cpp" line="178"/>
+        <location filename="../src/settings/Settings.cpp" line="180"/>
         <source>Background Effects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/settings/Settings.cpp" line="207"/>
-        <source>Custom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/settings/Settings.cpp" line="208"/>
-        <source>Effects</source>
-        <translation type="unfinished"></translation>
+        <translation>Efeitos do Plano de Fundo</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="209"/>
-        <source>Performance</source>
-        <translation type="unfinished"></translation>
+        <source>Custom</source>
+        <translation>Customização</translation>
     </message>
     <message>
         <location filename="../src/settings/Settings.cpp" line="210"/>
+        <source>Effects</source>
+        <translation>Efeitos</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/Settings.cpp" line="211"/>
+        <source>Performance</source>
+        <translation>Desempenho</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/Settings.cpp" line="212"/>
         <source>Environment Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Variáveis de Ambiente</translation>
+    </message>
+</context>
+<context>
+    <name>QCineSettingsManager::SettingsManager</name>
+    <message>
+        <location filename="../src/settings/SettingsManager.hpp" line="119"/>
+        <location filename="../src/settings/SettingsManager.hpp" line="120"/>
+        <source>Default</source>
+        <translation>Padrão</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/SettingsManager.hpp" line="119"/>
+        <source>Gradient</source>
+        <translation>Gradiente</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/SettingsManager.hpp" line="119"/>
+        <source>Rounded</source>
+        <translation>Arredondado</translation>
+    </message>
+    <message>
+        <location filename="../src/settings/SettingsManager.hpp" line="120"/>
+        <source>Random</source>
+        <translation>Aleatório</translation>
     </message>
 </context>
 </TS>
