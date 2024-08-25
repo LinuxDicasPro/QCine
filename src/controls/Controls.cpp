@@ -16,7 +16,7 @@ namespace QCineControls {
 
         debug = new QCineDebug::Debug();
         settingsManager = new QCineSettingsManager::SettingsManager();
-        slider = new QCineSlider::Slider();
+        slider = new QCineSlider::Slider(QCineSlider::Duration);
         connect(slider, &QCineSlider::Slider::sliderMove, player, &QCinePlayer::Player::setPosition);
 
         /** Botões dos controles */
@@ -32,7 +32,7 @@ namespace QCineControls {
         connect(volume, &QPushButton::clicked, this, &Controls::changeMute);
 
         /** Controle de volume */
-        auto volumeslider = new QCineSlider::Slider(); //todo
+        auto volumeslider = new QCineSlider::Slider(QCineSlider::Volume); //todo
         volumeslider->setEnabled(true);
         volumeslider->setMinimum(0);
         volumeslider->setMaximum(100);
@@ -86,12 +86,12 @@ namespace QCineControls {
      * Função para setar se o reprodutor está no mudo ou com volume.
      */
     void Controls::changeMute() {
+        if (not player->hasAudio())
+            return;
+
         if (player->isMuted()) {
             player->setMute(false);
-            if (player->volume() < 50)
-                volume->btn(QCineIcon::VolumeDown);
-            else
-                volume->btn(QCineIcon::VolumeUp);
+            changeVolumeIcon();
         } else {
             player->setMute(true);
             volume->btn(QCineIcon::VolumeOff);
@@ -102,10 +102,31 @@ namespace QCineControls {
      * Função para alterar o volume do pragrama.
      */
     void Controls::changeVolume(int i) {
+        debug->msg("Volume", "Controls", {I(i)});
+        if (player->isMuted())
+            player->setMute(false);
+
         player->setVolume(i);
-        if (i < 50)
+        changeVolumeIcon(i);
+    }
+
+    /**
+     * Função para alterar o ícone do botão para ativação do mudo ou volume.
+     * @param i - Opcional. Valor do volume, se possível.
+     */
+    void Controls::changeVolumeIcon(int i) {
+        if (not player->hasAudio()) {
+            volume->btn(QCineIcon::NoSound);
+            return;
+        }
+
+        int vol{i > (-1) ? i : player->volume()};
+
+        if (vol < 1 and volume->btn() != QCineIcon::VolumeZero)
+            volume->btn(QCineIcon::VolumeZero);
+        else if (vol < 50 and volume->btn() != QCineIcon::VolumeDown)
             volume->btn(QCineIcon::VolumeDown);
-        else
+        else if (vol >= 50 and volume->btn() != QCineIcon::VolumeUp)
             volume->btn(QCineIcon::VolumeUp);
     }
 
@@ -127,7 +148,7 @@ namespace QCineControls {
             QStyleOption opt;
             opt.initFrom(this);
             QPainter p(this);
-            style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+            this->style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
         }
         QWidget::paintEvent(event);
     }

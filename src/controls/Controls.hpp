@@ -32,6 +32,8 @@ namespace QCineControls {
 
         void sliderPosition(int i);
 
+        void changeVolumeIcon(int i = (-1));
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"
 

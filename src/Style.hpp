@@ -40,6 +40,8 @@ namespace QCineStyle {
 
         QString sliderStyle();
 
+        QString volumeStyle();
+
         static QString itemSelectStyle();
 
         static QString labelStyle(int i);
@@ -63,7 +65,7 @@ namespace QCineStyle {
 
         QColor b = QPalette().color(QPalette::Window);
         QColor t = QPalette().color(QPalette::WindowText);
-        QColor m = QPalette().color(QPalette::Highlight);
+        QColor m = QPalette().color(QPalette::Highlight); // azul claro
         QColor l = QPalette().color(QPalette::Light);
         QString opacity{}, border{};
     };

@@ -30,6 +30,8 @@ namespace QCinePlayer {
 
         [[nodiscard]] bool isPausing() const { return pausing; }
 
+        [[nodiscard]] bool hasAudio() const { return audio; }
+
         bool isMedia() { return !currentFile.isEmpty(); }
 
         QString currentMedia() { return currentFile; }
@@ -74,11 +76,13 @@ namespace QCinePlayer {
     private:
         void selectEngine();
 
-        void isVideo();
+        void checkMedia();
 
         void isPlaying(bool b) { playing = b; }
 
         void isPausing(bool b) { pausing = b; }
+
+        void hasAudio(bool b) { audio = b; }
 
         void isBlockScreenSaver(bool b) { blockScreenSaver = b; }
 
@@ -95,7 +99,7 @@ namespace QCinePlayer {
 #endif
 
         QString currentFile{};
-        bool playing{false}, pausing{false}, blockScreenSaver{false};
+        bool playing{false}, pausing{false}, blockScreenSaver{false}, audio{false};
     };
 
 } // QCinePlayer

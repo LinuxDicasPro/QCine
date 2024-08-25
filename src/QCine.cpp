@@ -285,6 +285,7 @@ namespace QCine {
             debug->msg("Setando o visualizador de plano de fundo", "QCine");
             stackedWidget->setCurrentWidget(background);
         }
+        controls->changeVolumeIcon();
     }
 
     /**

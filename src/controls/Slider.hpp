@@ -10,11 +10,16 @@
 
 namespace QCineSlider {
 
+    enum Type {
+        Duration = 0,
+        Volume = 1
+    };
+
     class Slider : public QSlider {
     Q_OBJECT
 
     public:
-        explicit Slider();
+        explicit Slider(Type slider = Type::Duration);
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"
@@ -40,6 +45,7 @@ namespace QCineSlider {
         [[nodiscard]] int pixelPosToRangeValue(int pos) const;
 
         QCineDebug::Debug *debug{};
+        Type type{};
         int val{0};
     };
 

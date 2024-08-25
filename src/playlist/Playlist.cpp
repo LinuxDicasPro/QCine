@@ -38,7 +38,7 @@ namespace QCinePlaylist {
         auto add = new QCineButtons::Buttons(btnIconSize, QCineIcon::Add);
         auto remove = new QCineButtons::Buttons(btnIconSize, QCineIcon::Remove);
         auto clear = new QCineButtons::Buttons(btnIconSize, QCineIcon::ClearList);
-        clear->pressColor(QColor(230, 130, 140));
+        clear->pressColor(colorRed);
         connect(add, &QCineButtons::Buttons::clicked, this, &Playlist::addFiles);
         connect(clear, &QCineButtons::Buttons::clicked, this, &Playlist::clearPlaylist);
 

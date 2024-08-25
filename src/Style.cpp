@@ -206,6 +206,39 @@ namespace QCineStyle {
     }
 
     /**
+     * Esquema de cores para o controle de volume.
+     * @return Estilo do Volume
+     */
+    QString Style::volumeStyle() {
+        return QString("QSlider {"
+                       "    height: 32px;"
+                       "}"
+                       "QSlider::groove {"
+                       "    background-color: transparent;"
+                       "    border: 1px solid rgb(%1, %2, %3);"
+                       "    border-radius: 2px;"
+                       "    height: 2px;"
+                       "}"
+                       "QSlider::handle {"
+                       "    border: 1px solid rgb(%7, %8, %9);"
+                       "    background-color: rgb(%4, %5, %6);"
+                       "    width: 16px;"
+                       "    margin: -8 -1;"
+                       "    border-radius: 9px;"
+                       "}"
+                       "QSlider::sub-page {"
+                       "    background-color: rgb(%4, %5, %6);"
+                       "    border: 1px solid rgb(%4, %5, %6);"
+                       "    border-radius: 2px;"
+                       "}"
+                       "QSlider::sub-page:disabled {"
+                       "    background-color: transparent;"
+                       "    border: none;"
+                       "}").arg(I(l.red()), I(l.green()), I(l.blue()), I(m.red()), I(m.green()), I(m.blue()),
+                                I(60), I(112), I(132));
+    }
+
+    /**
      * Função para customizar o label usado para mostrar as informações da mídia importada.
      * @return Estilo do Fundo do Texto
      */

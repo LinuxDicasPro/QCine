@@ -8,6 +8,8 @@
 #include <DefaultPath.hpp>
 #include <Icon.hpp>
 
+#define colorRed QColor(230, 130, 140)
+
 namespace QCineButtons {
 
 #define defMax 2
@@ -18,7 +20,9 @@ namespace QCineButtons {
     public:
         explicit Buttons(int size, QCineIcon::Icons icon, int max = defMax);
 
-        void btn(QCineIcon::Icons ico) { this->setIcon(icon->setIcon(ico)); }
+        void btn(QCineIcon::Icons ico);
+
+        QCineIcon::Icons btn() { return this->property("id").value<QCineIcon::Icons>(); }
 
         void pressColor(const QColor &color) { newcolor = color; }
 

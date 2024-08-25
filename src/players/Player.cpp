@@ -55,7 +55,7 @@ namespace QCinePlayer {
             player->Play();
         }
 
-        isVideo();
+        checkMedia();
         isPlaying(true);
         isPausing(false);
 
@@ -121,9 +121,9 @@ namespace QCinePlayer {
     }
 
     /**
-     * Implementação própria e precisa para verificação de vídeo.
+     * Implementação própria e precisa para verificar se o arquivo multimídia é um vídeo ou um áudio.
      */
-    void Player::isVideo() {
+    void Player::checkMedia() {
         AVFormatContext *pFormatContext = avformat_alloc_context();
         if (not pFormatContext) {
             Q_EMIT checkVideo(false);
@@ -143,16 +143,16 @@ namespace QCinePlayer {
             return;
         }
 
+        hasAudio(false);
         bool hasValidVideo{false};
         for (unsigned int i = 0; i < pFormatContext->nb_streams; i++) {
             AVStream *stream = pFormatContext->streams[i];
-            AVCodecParameters *codecParameters = stream->codecpar;
-            if (codecParameters->codec_type == AVMEDIA_TYPE_VIDEO and
-                not (stream->disposition & AV_DISPOSITION_ATTACHED_PIC)) {
-                if (codecParameters->width > 0 and codecParameters->height > 0) {
-                    hasValidVideo = true;
-                    break;
-                }
+            AVCodecParameters *codec = stream->codecpar;
+            if (codec->codec_type == AVMEDIA_TYPE_VIDEO and not (stream->disposition & AV_DISPOSITION_ATTACHED_PIC) and
+                (codec->width > 0 and codec->height > 0)) {
+                hasValidVideo = true;
+            } else if (codec->codec_type == AVMEDIA_TYPE_AUDIO) {
+                hasAudio(true);
             }
         }
 

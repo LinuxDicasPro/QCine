@@ -123,6 +123,7 @@ namespace QCine {
         QStackedWidget *stackedWidget{};
         QSplitter *splitter{};
         QVBoxLayout *allcontrols{}, *spPlaylist{}, *lsettings{};
+
         bool split{false}, iscontrol{false}, minimizeMaximized{false}, noLeave{false};
     };
 

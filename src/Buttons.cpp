@@ -13,17 +13,21 @@ namespace QCineButtons {
         debug = new QCineDebug::Debug();
         icon = new QCineIcon::Icon(size, max);
 
-        /** Estilização padrão dos botões */
+        this->setProperty("id", (int) icoName);
         this->setFocusPolicy(Qt::NoFocus);
-        this->setStyleSheet("QPushButton {"
-                            "    border: none;"
-                            "    background-color: transparent;"
-                            "}");
-
         this->setIconSize(QSize(num, num));
         this->setFixedSize(num, num);
-        this->setMouseTracking(true);
+        this->setStyleSheet("QPushButton { border: none; background-color: transparent; }");
         this->setIcon(icon->setIcon(icoName));
+    }
+
+    /**
+     * Função para alterar o ícone do botão.
+     * @param ico - Novo ícone.
+     */
+    void Buttons::btn(QCineIcon::Icons ico) {
+        this->setProperty("id", (int) ico);
+        this->setIcon(icon->setIcon(ico));
     }
 
     void Buttons::enterEvent(QEnterEvent *event) {

@@ -5,13 +5,21 @@
 #include "Slider.hpp"
 
 namespace QCineSlider {
-    Slider::Slider() {
+    Slider::Slider(Type slider) : type(slider) {
         this->setOrientation(Qt::Horizontal);
         this->setFocusPolicy(Qt::NoFocus);
         this->setMouseTracking(true);
         this->setTracking(true);
         this->setEnabled(false);
-        this->setStyleSheet(QCineStyle::Style().sliderStyle());
+
+        if (slider == Type::Volume) {
+            this->setStyleSheet(QCineStyle::Style().volumeStyle());
+            this->setSingleStep(1);
+            this->setPageStep(1);
+            this->setMinimumWidth(120);
+        } else {
+            this->setStyleSheet(QCineStyle::Style().sliderStyle());
+        }
 
         debug = new QCineDebug::Debug();
 
