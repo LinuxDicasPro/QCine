@@ -40,6 +40,8 @@ namespace QCine {
 
         void enterEvent(QEnterEvent *event) override;
 
+        void mousePressEvent(QMouseEvent *event) override;
+
         void closeEvent(QCloseEvent *event) override;
 
         bool eventFilter(QObject *obj, QEvent *event) override;

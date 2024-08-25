@@ -29,6 +29,8 @@ namespace QCineCheckMouse {
 
         void isDialog(bool b) { dialog = b; }
 
+        void isActive(bool b) { isactive = b; }
+
     public Q_SLOTS:
         void setHideTimer(int i) { changeHideTimer = i; }
 
@@ -54,14 +56,18 @@ namespace QCineCheckMouse {
 
         [[nodiscard]] bool isAlready() const { return alreadyMove; }
 
+        [[nodiscard]] bool isActive() const { return isactive; }
+
         void isMouseMove(bool b) { mouseMove = b; }
 
         void noMovingMouse();
 
         QCineDebug::Debug *debug{};
         QTimer *mouseTimer{}, *hideTimer{};
+
         QPoint lastMousePos{}, currentPos{};
         bool mouseMove{false}, stopCheck{false}, alreadyMove{false}, contextMenu{false}, dialog{false};
+        bool isactive{true};
         int changeHideTimer{};
     };
 

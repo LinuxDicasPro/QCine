@@ -70,7 +70,7 @@ namespace QCineCheckMouse {
     void CheckMouse::noMovingMouse() {
         if (not isMouseMove() and not isNoMouseCheck()) {
 
-            if (not isContextMenu() and not isDialog())
+            if (not isContextMenu() and not isDialog() and isActive())
                 QApplication::setOverrideCursor(Qt::BlankCursor);
 
             debug->msg("Ocultando controles", "CheckMouse");

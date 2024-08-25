@@ -490,9 +490,12 @@ namespace QCine {
     void QCine::changeEvent(QEvent *event) {
         if (event->type() == QEvent::ActivationChange) {
             if (this->isActiveWindow()) {
-                debug->msg("Janela Ativa", "QCine");
+                debug->msg("Janela ativa", "QCine");
+                checkMouse->isActive(true);
             } else {
-                debug->msg("Janela Inativa", "QCine");
+                debug->msg("Janela inativa", "QCine");
+                checkMouse->isActive(false);
+                QApplication::restoreOverrideCursor();
             }
         }
 
@@ -537,8 +540,17 @@ namespace QCine {
     }
 
     void QCine::enterEvent(QEnterEvent *event) {
+        if (not this->isActiveWindow())
+            return;
+
         floatWidget->show();
         QWidget::enterEvent(event);
+    }
+
+    void QCine::mousePressEvent(QMouseEvent *event) {
+        if (floatWidget->isHidden() and event->button() & Qt::LeftButton) // ao reativar janela após clique
+            floatWidget->show();
+        QWidget::mouseReleaseEvent(event);
     }
 
     void QCine::moveEvent(QMoveEvent *event) {
