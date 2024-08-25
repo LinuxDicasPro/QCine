@@ -7,6 +7,8 @@
 
 namespace QCinePlaylistModel {
     PlaylistModel::PlaylistModel() {
+        this->setResizeMode(QListWidget::Adjust);
+        this->setSelectionMode(QAbstractItemView::ExtendedSelection);
         this->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         this->setStyleSheet(QCineStyle::Style().playlistStyle());
@@ -134,6 +136,17 @@ namespace QCinePlaylistModel {
     }
 
     void PlaylistModel::saveListMetaType() {
+    }
+
+    void PlaylistModel::wheelEvent(QWheelEvent *event) {
+        int scrollAmount = 1; // rolar um item de cada vez
+
+        if (event->angleDelta().y() > 0)
+            this->verticalScrollBar()->setValue(this->verticalScrollBar()->value() - scrollAmount);
+        else
+            this->verticalScrollBar()->setValue(this->verticalScrollBar()->value() + scrollAmount);
+
+        event->accept();
     }
 
 } // QCinePlaylistModel

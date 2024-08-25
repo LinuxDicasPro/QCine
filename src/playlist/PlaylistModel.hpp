@@ -2,6 +2,9 @@
 #define QCINE_PLAYLISTMODEL_HPP
 
 #include <QListWidget>
+#include <QScrollBar>
+#include <QWheelEvent>
+
 #include <PlaylistItem.hpp>
 
 namespace QCinePlaylistModel {
@@ -43,6 +46,9 @@ namespace QCinePlaylistModel {
         void playing(const QString &str);
 
 #pragma clang diagnostic pop
+
+    protected:
+        void wheelEvent(QWheelEvent *event) override;
 
     private:
         QListWidgetItem *it{};
