@@ -14,6 +14,7 @@ namespace QCinePlaylist {
         debug = new QCineDebug::Debug();
         playlistModel = new QCinePlaylistModel::PlaylistModel();
         connect(playlistModel, &QCinePlaylistModel::PlaylistModel::playing, this, &Playlist::itemPlay);
+        connect(playlistModel, &QCinePlaylistModel::PlaylistModel::removedItem, this, &Playlist::itemRemoved);
 
         /** Editor do nome da playlist atual */
         playlistName = new QCinePlaylistName::PlaylistName();
@@ -40,6 +41,7 @@ namespace QCinePlaylist {
         auto clear = new QCineButtons::Buttons(btnIconSize, QCineIcon::ClearList);
         clear->pressColor(colorRed);
         connect(add, &QCineButtons::Buttons::clicked, this, &Playlist::addFiles);
+        connect(remove, &QCineButtons::Buttons::clicked, this, &Playlist::removeSelecteditems);
         connect(clear, &QCineButtons::Buttons::clicked, this, &Playlist::clearPlaylist);
 
         /** Layout para as playlists salvas */
@@ -118,6 +120,13 @@ namespace QCinePlaylist {
         workerPlaylist->setList(str);
         isFirst(false);
         thread->start();
+    }
+
+    /**
+     * Função para remover itens selecionados da lista. //todo
+     */
+    void Playlist::removeSelecteditems() {
+        model()->removeSelectedItem();
     }
 
     /**

@@ -69,6 +69,7 @@ namespace QCine {
         playlist = new QCinePlaylist::Playlist();
         connect(playlist, &QCinePlaylist::Playlist::isFirstPlay, this, &QCine::firstPlay);
         connect(playlist, &QCinePlaylist::Playlist::itemPlay, this, &QCine::play);
+        connect(playlist, &QCinePlaylist::Playlist::itemRemoved, this, &QCine::stop);
         connect(playlist, &QCinePlaylist::Playlist::isClear, this, &QCine::playlistIsCleaned);
         connect(playlist, &QCinePlaylist::Playlist::noEffect, this, &QCine::changeplaylist);
         connect(playlist, &QCinePlaylist::Playlist::enterBox, this, &QCine::statusComboBox);
@@ -179,8 +180,11 @@ namespace QCine {
     void QCine::play(const QString &file) {
         playlist->model()->clearSelection();
 
-        if (not player->currentMedia().isEmpty())
-            playlist->model()->getItem(player->currentMedia())->unselectColor();
+        if (not player->currentMedia().isEmpty()) {
+            auto item = playlist->model()->getItem(player->currentMedia());
+            if (item)  // controle de erro
+                item->unselectColor();
+        }
 
         player->play(file);
         controls->playBtn()->btn(QCineIcon::Pause);
@@ -191,6 +195,8 @@ namespace QCine {
             playlist->model()->getItem(player->currentMedia())->selectColor();
             playlist->model()->setCurrentRow(playlist->model()->indexOf(player->currentMedia()));
         }
+
+        playlist->model()->clearSelection();
     }
 
     /**
@@ -214,14 +220,19 @@ namespace QCine {
      * Parando a reprodução de arquivos multimídia.
      */
     void QCine::stop() {
-        if (player->isPlaying()) {
-            player->stop();
-            stackedWidget->setCurrentWidget(background);
-            playlist->model()->clearSelection();
+        if (not player->isPlaying())
+            return;
 
-            if (not player->currentMedia().isEmpty())
-                playlist->model()->getItem(player->currentMedia())->unselectColor();
+        player->stop();
+        stackedWidget->setCurrentWidget(background);
+        playlist->model()->clearSelection();
+
+        if (not player->currentMedia().isEmpty()) {
+            auto item = playlist->model()->getItem(player->currentMedia());
+            if (item)  // controle de erro
+                item->unselectColor();
         }
+
         controls->playBtn()->btn(QCineIcon::Play);
         controls->sliderPosition(0);
         controls->sliderEnabled(false);

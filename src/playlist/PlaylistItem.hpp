@@ -35,9 +35,11 @@ namespace QCinePlaylistItem {
 
         QString getFile() { return str; }
 
-        void selectColor() { this->setStyleSheet(QCineStyle::Style::itemSelectStyle()); }
+        [[nodiscard]] bool isPlaying() const { return isplaying; }
 
-        void unselectColor() { this->setStyleSheet("QDialog { border: none; background-color: none; }"); }
+        void selectColor() { this->setStyleSheet(QCineStyle::Style::itemSelectStyle()); isPlaying(true); } //todo
+
+        void unselectColor() { this->setStyleSheet("QDialog { border: none; background-color: none; }"); isPlaying(false);}
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "NotImplementedFunctions"
@@ -48,11 +50,14 @@ namespace QCinePlaylistItem {
 #pragma clang diagnostic pop
 
     private:
+        void isPlaying(bool b) { isplaying = b; }
+
         QCineCover::Cover *cover{};
         QVBoxLayout *infolayout{};
         QHBoxLayout *mainlayout{}, *title{}, *df{}, *art{};
 
         QString str{};
+        bool isplaying{false};
     };
 
 } // QCinePlaylistItem

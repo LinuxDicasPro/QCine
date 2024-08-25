@@ -19,6 +19,8 @@ namespace QCinePlaylistModel {
 
         void insertListItem(const QStringList &list);
 
+        void removeSelectedItem();
+
         QString getName(const QString &str);
 
         QString indexAt(int i);
@@ -44,6 +46,8 @@ namespace QCinePlaylistModel {
 
     Q_SIGNALS:
         void playing(const QString &str);
+
+        void removedItem();
 
 #pragma clang diagnostic pop
 

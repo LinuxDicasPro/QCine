@@ -75,6 +75,24 @@ namespace QCinePlaylistModel {
     }
 
     /**
+     * Remover itens selecionados da lista.
+     */
+    void PlaylistModel::removeSelectedItem() {
+        QList<QListWidgetItem*> selectedItems = this->selectedItems();
+
+        for (QListWidgetItem* item : selectedItems) {
+            auto w = dynamic_cast<QCinePlaylistItem::PlaylistItem *>(this->itemWidget(item));
+
+            if (w->isPlaying())
+                Q_EMIT removedItem();
+
+            mediaFileList.removeAt(this->indexOf(w->getFile()));
+            this->removeItemWidget(item);
+            delete item;
+        }
+    }
+
+    /**
      * Acessar o próximo arquivo armazenado com base em um arquivo presente na lista.
      * @param str - Arquivo da Lista
      * @return Próximo Arquivo

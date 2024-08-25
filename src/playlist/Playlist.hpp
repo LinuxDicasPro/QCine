@@ -41,6 +41,8 @@ namespace QCinePlaylist {
 
         void itemPlay(const QString &media);
 
+        void itemRemoved();
+
         void dialogShow(bool b);
 
         void isClear();
@@ -62,6 +64,8 @@ namespace QCinePlaylist {
         void addFilesDialog(int result);
 
         void clearPlaylist();
+
+        void removeSelecteditems();
 
     private:
         void isFirst(bool b) { first = b; }
