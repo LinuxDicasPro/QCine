@@ -112,6 +112,14 @@ namespace QCineSettingsManager {
 
         int effectHideTime();
 
+        void volume(int i);
+
+        int volume();
+
+        void mute(bool b);
+
+        bool mute();
+
     private:
         QPoint center() { return rect.center() - win->frameGeometry().center(); }
 

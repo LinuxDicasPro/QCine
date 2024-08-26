@@ -30,8 +30,7 @@ namespace QCineIcon {
                 QVariantList{"volume_up", QStyle::SP_MediaVolume},
                 QVariantList{"volume_down", QStyle::SP_MediaVolume},
                 QVariantList{"volume_off", QStyle::SP_MediaVolumeMuted},
-                QVariantList{"no_sound", QStyle::SP_MediaVolumeMuted},
-                QVariantList{"volume_zero", QStyle::SP_MediaVolumeMuted},
+                QVariantList{"no_sound", QStyle::SP_MediaVolumeMuted}
         };
     }
 

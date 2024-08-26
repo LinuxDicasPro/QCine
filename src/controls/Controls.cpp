@@ -32,9 +32,9 @@ namespace QCineControls {
         connect(volume, &QPushButton::clicked, this, &Controls::changeMute);
 
         /** Controle de volume */
-        volumeslider->setValue(100);
         auto volumeslider = new QCineSlider::Slider(QCineSlider::Volume);
         volumeslider->setMaximum(100); // todo
+        volumeslider->setValue(settingsManager->volume());
         connect(volumeslider, &QSlider::valueChanged, this, &Controls::changeVolume);
         player->setVolume(volumeslider->value());
 
@@ -69,6 +69,11 @@ namespace QCineControls {
         mainlayout->addLayout(lslider);
         mainlayout->addLayout(controls);
         mainlayout->addStretch(1);
+
+        if (settingsManager->mute() and not player->isMuted())
+            changeMute();
+        else
+            changeVolumeIcon();
     }
 
     /**
@@ -84,14 +89,16 @@ namespace QCineControls {
      * Função para setar se o reprodutor está no mudo ou com volume.
      */
     void Controls::changeMute() {
-        if (not player->hasAudio())
+        if (player->isMedia() and not player->hasAudio())
             return;
 
         if (player->isMuted()) {
             player->setMute(false);
+            settingsManager->mute(false);
             changeVolumeIcon();
         } else {
             player->setMute(true);
+            settingsManager->mute(true);
             volume->btn(QCineIcon::VolumeOff);
         }
     }
@@ -105,6 +112,7 @@ namespace QCineControls {
             player->setMute(false);
 
         player->setVolume(i);
+        settingsManager->volume(i);
         changeVolumeIcon(i);
     }
 
@@ -113,16 +121,16 @@ namespace QCineControls {
      * @param i - Opcional. Valor do volume, se possível.
      */
     void Controls::changeVolumeIcon(int i) {
-        if (not player->hasAudio()) {
+        if (player->isMedia() and not player->hasAudio()) {
             volume->btn(QCineIcon::NoSound);
             return;
         }
 
-        int vol{i > (-1) ? i : player->volume()};
+        int vol{i > (-1) ? i : settingsManager->volume()};
 
-        if (vol < 1 and volume->btn() != QCineIcon::VolumeZero)
-            volume->btn(QCineIcon::VolumeZero);
-        else if (vol < 50 and volume->btn() != QCineIcon::VolumeDown)
+        if (vol < 1 and volume->btn() != QCineIcon::VolumeOff)
+            volume->btn(QCineIcon::VolumeOff);
+        else if (vol > 0 and vol < 50 and volume->btn() != QCineIcon::VolumeDown)
             volume->btn(QCineIcon::VolumeDown);
         else if (vol >= 50 and volume->btn() != QCineIcon::VolumeUp)
             volume->btn(QCineIcon::VolumeUp);

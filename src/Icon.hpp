@@ -36,8 +36,7 @@ namespace QCineIcon {
         VolumeUp = 16,
         VolumeDown = 17,
         VolumeOff = 18,
-        NoSound = 19,
-        VolumeZero = 20
+        NoSound = 19
     };
 
     class Icon : public QObject {

@@ -12,6 +12,7 @@ namespace QCineSettingsManager {
 #define defaultEffectTime 500
 #define defaultEffectTimeBG 2000
 #define defaultHideTime 2000
+#define defaultVolume 100
 
     SettingsManager::SettingsManager(QWidget *window) : win(window) {
         if (win) {
@@ -157,11 +158,27 @@ namespace QCineSettingsManager {
     }
 
     void SettingsManager::effectHideTime(int i) {
-        this->setValue("controlHideTime", i);
+        this->setValue("effectHideTime", i);
     }
 
     int SettingsManager::effectHideTime() {
-        return this->value("controlHideTime", defaultHideTime).toInt();
+        return this->value("effectHideTime", defaultHideTime).toInt();
+    }
+
+    void SettingsManager::volume(int i) {
+        this->setValue("volume", i);
+    }
+
+    int SettingsManager::volume() {
+        return this->value("volume", defaultVolume).toInt();
+    }
+
+    void SettingsManager::mute(bool b) {
+        this->setValue("mute", b);
+    }
+
+    bool SettingsManager::mute() {
+        return this->value("mute", false).toBool();
     }
 
 } // QCineSettingsManager
