@@ -32,11 +32,9 @@ namespace QCineControls {
         connect(volume, &QPushButton::clicked, this, &Controls::changeMute);
 
         /** Controle de volume */
-        auto volumeslider = new QCineSlider::Slider(QCineSlider::Volume); //todo
-        volumeslider->setEnabled(true);
-        volumeslider->setMinimum(0);
-        volumeslider->setMaximum(100);
         volumeslider->setValue(100);
+        auto volumeslider = new QCineSlider::Slider(QCineSlider::Volume);
+        volumeslider->setMaximum(100); // todo
         connect(volumeslider, &QSlider::valueChanged, this, &Controls::changeVolume);
         player->setVolume(volumeslider->value());
 

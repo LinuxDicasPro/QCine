@@ -10,14 +10,15 @@ namespace QCineSlider {
         this->setFocusPolicy(Qt::NoFocus);
         this->setMouseTracking(true);
         this->setTracking(true);
-        this->setEnabled(false);
 
         if (slider == Type::Volume) {
+            this->setEnabled(true);
             this->setStyleSheet(QCineStyle::Style().volumeStyle());
             this->setSingleStep(1);
             this->setPageStep(1);
             this->setMinimumWidth(120);
         } else {
+            this->setEnabled(false);
             this->setStyleSheet(QCineStyle::Style().sliderStyle());
         }
 
