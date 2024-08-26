@@ -178,11 +178,13 @@ namespace QCine {
      * @param file - Arquivo multimídia.
      */
     void QCine::play(const QString &file) {
+        controls->sliderEnabled(false);
+        controls->sliderPosition(0);
         playlist->model()->clearSelection();
 
         if (not player->currentMedia().isEmpty()) {
             auto item = playlist->model()->getItem(player->currentMedia());
-            if (item)  // controle de erro
+            if (item)  // controle de erro ao excluir itens
                 item->unselectColor();
         }
 
@@ -246,8 +248,6 @@ namespace QCine {
         if (not player->isPlaying())
             return;
 
-        controls->sliderPosition(0);
-        controls->sliderEnabled(false);
         play(playlist->model()->indexOfNext(player->currentMedia()));
     }
 
@@ -258,8 +258,6 @@ namespace QCine {
         if (not player->isPlaying())
             return;
 
-        controls->sliderPosition(0);
-        controls->sliderEnabled(false);
         play(playlist->model()->indexOfPrevious(player->currentMedia()));
     }
 
