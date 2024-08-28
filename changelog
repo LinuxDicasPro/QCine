@@ -1,3 +1,13 @@
+version 2024.08.28:
+- remove selected items.
+- update translations.
+- vlc-qt is optional.
+- change volume/mute and fix bugs.
+- change slider.
+- change volume style.
+- change playlist.
+- revision play and pause.
+- fix bugs interface.
 version 2024.08.11:
 - play, pause, next, previous, volume, mute, slider progress, playlist.
 - fullscreen mode.

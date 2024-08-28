@@ -1,3 +1,9 @@
 #!/bin/bash
 
-lupdate-qt6 -verbose qcine.pro
+if which lupdate-qt6 > /dev/null; then
+    lupdate-qt6 -verbose qcine.pro
+else
+    echo "lupdate-qt6 is not installed."
+fi
+
+exit 0

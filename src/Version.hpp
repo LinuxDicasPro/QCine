@@ -2,6 +2,6 @@
 #define QCINE_VERSION_HPP
 
 #define DEBUG true
-#define VERSION "2024.08.11"
+#define VERSION "2024.08.28"
 
 #endif //QCINE_VERSION_HPP

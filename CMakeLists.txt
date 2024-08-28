@@ -132,10 +132,3 @@ target_link_libraries(${PRG_NAME}
         ${LIBVLCCORE_LIBRARY}
         ${FFMPEG_LIBRARIES}
 )
-
-add_custom_command(
-        TARGET ${PRG_NAME}
-        COMMAND cd ${CMAKE_SOURCE_DIR}/lang
-        COMMAND ${CMAKE_SOURCE_DIR}/lang/make_pt_qm
-        COMMENT "Gerando tradução do programa"
-)
